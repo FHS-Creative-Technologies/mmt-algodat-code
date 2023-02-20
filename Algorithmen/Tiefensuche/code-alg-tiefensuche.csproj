@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Datenstrukturen\Graph\code-ds-graph.csproj" />
+    <ProjectReference Include="..\..\Datenstrukturen\Stack\code-ds-stack.csproj" />
+    <ProjectReference Include="..\..\Datenstrukturen\Dictionary\code-ds-dictionary.csproj" />
+     <ProjectReference Include="..\..\Datenstrukturen\List\code-ds-listen.csproj" />
+     <ProjectReference Include="..\..\Datenstrukturen\Hashtabelle\code-ds-hashtabelle.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Tiefensuche</RootNamespace>
+  </PropertyGroup>
+
+</Project>

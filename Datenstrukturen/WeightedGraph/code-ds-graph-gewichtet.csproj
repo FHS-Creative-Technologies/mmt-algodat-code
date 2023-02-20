@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Dictionary\code-ds-dictionary.csproj" />
+    <ProjectReference Include="..\List\code-ds-listen.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>WeightedGraph</RootNamespace>
+  </PropertyGroup>
+
+</Project>
