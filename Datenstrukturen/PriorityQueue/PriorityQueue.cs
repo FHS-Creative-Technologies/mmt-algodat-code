@@ -22,8 +22,10 @@ namespace AlgoDat
                 Element = element;
             }
 
-            public int CompareTo(HeapKeyValuePair other)
+            public int CompareTo(HeapKeyValuePair? other)
             {
+                if(other is null)
+                    return int.MaxValue;
                 return Priority.CompareTo(other.Priority);
             }
         }
@@ -92,7 +94,7 @@ namespace AlgoDat
             }
         }
 
-        public TElement Dequeue()
+        public TElement? Dequeue()
         {
             if (_heap.Count == 0)
             {

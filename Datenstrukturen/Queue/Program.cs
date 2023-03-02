@@ -2,7 +2,7 @@
 
 using System;
 
-Queue<int> q = new();
+AlgoDat.Queue<int> q = new();
 
 q.Enqueue(5);
 q.Enqueue(3);

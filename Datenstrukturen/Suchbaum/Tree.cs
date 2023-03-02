@@ -7,25 +7,25 @@ namespace AlgoDat
         public class Node<U>
         {
             public T Key { get; }
-            
-            public Node<U> Left { get; set; }
-            public Node<U> Right { get; set; }
-            public Node<U> Parent { get; set; }
-            
+
+            public Node<U>? Left { get; set; }
+            public Node<U>? Right { get; set; }
+            public Node<U>? Parent { get; set; }
+
             public Node(T key)
             {
                 Key = key;
             }
         }
 
-        public Node<T> Root { get; set; }
+        public Node<T>? Root { get; set; }
 
-        public Node<T> Search(T searchKey)
+        public Node<T>? Search(T searchKey)
         {
             return Search(searchKey, Root);
         }
 
-        private Node<T> Search(T searchKey, Node<T> currentNode)
+        private Node<T>? Search(T searchKey, Node<T>? currentNode)
         {
             while (currentNode != null && searchKey.CompareTo(currentNode.Key) != 0)
             {
@@ -44,9 +44,9 @@ namespace AlgoDat
 
         public Node<T> Insert(T key)
         {
-            Node<T> currentNode = Root;
-            Node<T> lastParent = null;
-            
+            Node<T>? currentNode = Root;
+            Node<T>? lastParent = null;
+
             while (currentNode != null)
             {
                 lastParent = currentNode;
@@ -65,7 +65,8 @@ namespace AlgoDat
             if (lastParent == null)
             {
                 Root = newNode;
-            } else if (newNode.Key.CompareTo(lastParent.Key) < 0)
+            }
+            else if (newNode.Key.CompareTo(lastParent.Key) < 0)
             {
                 lastParent.Left = newNode;
             }
@@ -83,45 +84,48 @@ namespace AlgoDat
             {
                 n = n.Left;
             }
-            
+
             return n;
         }
 
-        private Node<T> Successor(Node<T> n)
+        private Node<T>? Successor(Node<T> n)
         {
             if (n.Right != null)
             {
                 return Minimum(n.Right);
             }
 
-            Node<T> parent = n.Parent;
+            Node<T>? parent = n.Parent;
             while (parent != null && n == parent.Right)
             {
                 n = parent;
                 parent = parent.Parent;
             }
-            
+
             return parent;
         }
 
-        private void Transplant(Node<T> u, Node<T> v)
+        private void Transplant(Node<T>? u, Node<T>? v)
         {
-            if (u.Parent == null)
+            if (u is not null)
             {
-                Root = v;
-            }
-            else if (u == u.Parent.Left)
-            {
-                u.Parent.Left = v;
-            }
-            else
-            {
-                u.Parent.Right = v;
-            }
-            
-            if (v != null)
-            {
-                v.Parent = u.Parent;
+                if (u.Parent == null)
+                {
+                    Root = v;
+                }
+                else if (u == u.Parent.Left)
+                {
+                    u.Parent.Left = v;
+                }
+                else
+                {
+                    u.Parent.Right = v;
+                }
+
+                if (v != null)
+                {
+                    v.Parent = u.Parent;
+                }
             }
         }
 
@@ -137,16 +141,19 @@ namespace AlgoDat
             }
             else
             {
-                Node<T> min = Successor(d);
-                if (min.Parent != d)
+                Node<T>? min = Successor(d);
+                if (min is not null)
                 {
-                    Transplant(min, min.Right);
-                    min.Right = d.Right;
-                    min.Right.Parent = min;
+                    if (min.Parent != d)
+                    {
+                        Transplant(min, min.Right!);
+                        min.Right = d.Right;
+                        min.Right.Parent = min;
+                    }
+                    Transplant(d, min);
+                    min.Left = d.Left;
+                    min.Left.Parent = min;
                 }
-                Transplant(d, min);
-                min.Left = d.Left;
-                min.Left.Parent = min;
             }
         }
     }

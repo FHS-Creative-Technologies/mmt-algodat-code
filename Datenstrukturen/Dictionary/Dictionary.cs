@@ -9,22 +9,22 @@ namespace AlgoDat
         public class KeyValuePair : IComparable<KeyValuePair>
         {
             public TKey Key { get; set; }
-            public TValue Value { get; set; }
+            public TValue? Value { get; set; }
 
             public KeyValuePair(TKey key)
             {
                 Key = key;
             }
 
-            public KeyValuePair(TKey key, TValue value)
+            public KeyValuePair(TKey key, TValue? value)
             {
                 Key = key;
                 Value = value;
             }
 
-            public int CompareTo(KeyValuePair other)
+            public int CompareTo(KeyValuePair? other)
             {
-                return Key.CompareTo(other.Key);
+                return Key.CompareTo(other!.Key);
             }
 
             public override int GetHashCode()
@@ -40,7 +40,7 @@ namespace AlgoDat
             {
                 get
                 {
-                    return _hashTableEnumerator != null ? _hashTableEnumerator.Current : null;
+                    return _hashTableEnumerator.Current;
                 }
             }
 
@@ -59,7 +59,7 @@ namespace AlgoDat
 
             public void Dispose()
             {
-                _hashTableEnumerator = null;
+                
             }
 
             public bool MoveNext()
@@ -69,7 +69,7 @@ namespace AlgoDat
 
             public void Reset()
             {
-                _hashTableEnumerator = null;
+                _hashTableEnumerator.Reset();
             }
         }
 
@@ -80,7 +80,7 @@ namespace AlgoDat
             _hashTable = new(initialCapacity);
         }
 
-        public void Add(TKey key, TValue value)
+        public void Add(TKey key, TValue? value)
         {
             var kvp = new KeyValuePair(key, value);
             if (_hashTable.Search(kvp) == null)
@@ -95,10 +95,10 @@ namespace AlgoDat
 
             if (result == null)
             {
-                return default(TValue);
+                return default(TValue)!;
             }
 
-            return result.Value;
+            return result.Value!;
         }
 
         public void Set(TKey key, TValue newValue)
@@ -107,7 +107,7 @@ namespace AlgoDat
 
             if (result == null)
             {
-                throw new Exception($"Key {key} does not exists in dictionary");
+                throw new Exception($"Key {key} does not exist in dictionary");
             }
 
             result.Value = newValue;

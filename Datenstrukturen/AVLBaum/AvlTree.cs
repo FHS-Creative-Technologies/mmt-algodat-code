@@ -8,18 +8,20 @@ namespace AlgoDat
         {
             public T Key { get; }
 
-            public Node Parent { get; set; }
-            public Node Left { get; set; }
-            public Node Right { get; set; }
+            public Node? Parent { get; set; }
+            public Node? Left { get; set; }
+            public Node? Right { get; set; }
 
             public int Height { get; private set; }
 
-            public int BalanceFactor {
-                get {
+            public int BalanceFactor
+            {
+                get
+                {
                     var heightRight = Right != null ? Right.Height : 0;
                     var heightLeft = Left != null ? Left.Height : 0;
 
-                    return  heightRight - heightLeft;
+                    return heightRight - heightLeft;
                 }
             }
 
@@ -39,14 +41,14 @@ namespace AlgoDat
             }
         }
 
-        public Node Root { get; private set; }
+        public Node? Root { get; private set; }
 
-        public Node Search(T searchKey)
+        public Node? Search(T searchKey)
         {
             return Search(searchKey, Root);
         }
 
-        private Node Search(T searchKey, Node currentNode)
+        private Node? Search(T searchKey, Node? currentNode)
         {
             while (currentNode != null && searchKey.CompareTo(currentNode.Key) != 0)
             {
@@ -66,7 +68,7 @@ namespace AlgoDat
         public Node Insert(T key)
         {
             Node newNode = StandardInsert(key);
-            Node currentNode = newNode.Parent;
+            Node? currentNode = newNode.Parent;
 
             while (currentNode != null)
             {
@@ -93,23 +95,23 @@ namespace AlgoDat
 
         private void Rebalance(Node node)
         {
-            if (node.BalanceFactor < -1)
+            if (node.BalanceFactor < -1 && node.Left is not null)
             {
                 // unbalanced on the left
-                
+
                 // left, left subtree as grown
                 if (node.Left.BalanceFactor == -1)
                 {
                     RotateRight(node.Left);
                 }
-                else
+                else if (node.Left.Right is not null)
                 {
                     var leftRightChild = node.Left.Right;
                     RotateLeft(leftRightChild);
                     RotateRight(leftRightChild);
                 }
             }
-            else
+            else if (node.Right is not null)
             {
                 // unbalance on the right
 
@@ -118,7 +120,7 @@ namespace AlgoDat
                 {
                     RotateLeft(node.Right);
                 }
-                else
+                else if (node.Right.Left is not null)
                 {
                     var rightLeftChild = node.Right.Left;
                     RotateRight(rightLeftChild);
@@ -129,16 +131,17 @@ namespace AlgoDat
 
         private Node StandardInsert(T key)
         {
-            Node currentNode = Root;
-            Node lastParent = null;
-            
+            Node? currentNode = Root;
+            Node? lastParent = null;
+
             while (currentNode != null)
             {
                 lastParent = currentNode;
                 if (key.CompareTo(currentNode.Key) == 0)
                 {
                     return currentNode;
-                } else if (key.CompareTo(currentNode.Key) < 0)
+                }
+                else if (key.CompareTo(currentNode.Key) < 0)
                 {
                     currentNode = currentNode.Left;
                 }
@@ -153,7 +156,8 @@ namespace AlgoDat
             if (lastParent == null)
             {
                 Root = newNode;
-            } else if (newNode.Key.CompareTo(lastParent.Key) < 0)
+            }
+            else if (newNode.Key.CompareTo(lastParent.Key) < 0)
             {
                 lastParent.Left = newNode;
             }
@@ -165,10 +169,10 @@ namespace AlgoDat
             return newNode;
         }
 
-        private void UpdateParentPointer(Node node, Node oldParent, Node oldGrandParent)
+        private void UpdateParentPointer(Node node, Node? oldParent, Node? oldGrandParent)
         {
             node.Parent = oldGrandParent;
-            
+
             // there was no grandparent, old parent was the root
             if (oldGrandParent == null)
             {
@@ -176,7 +180,7 @@ namespace AlgoDat
 
                 return;
             }
-            
+
             // we are in the left subtree
             if (oldGrandParent.Left == oldParent)
             {
@@ -190,17 +194,21 @@ namespace AlgoDat
 
         private void RotateLeft(Node node)
         {
-            var nOldParent = node.Parent;
-            var nOldPGrandParent = nOldParent.Parent;
+            Node? nOldParent = node.Parent;
+            Node? nOldPGrandParent = null;
 
-            nOldParent.Right = node.Left;
-            if (nOldParent.Right != null)
+            if (nOldParent is not null)
             {
-                nOldParent.Right.Parent = nOldParent;
-            }
+                nOldPGrandParent = nOldParent.Parent;
+                nOldParent.Right = node.Left;
+                if (nOldParent.Right != null)
+                {
+                    nOldParent.Right.Parent = nOldParent;
+                }
 
-            nOldParent.Parent = node;
-            node.Left = nOldParent;
+                nOldParent.Parent = node;
+                node.Left = nOldParent;
+            }
 
             UpdateParentPointer(node, nOldParent, nOldPGrandParent);
             UpdateNodeHeights(node);
@@ -208,17 +216,21 @@ namespace AlgoDat
 
         private void RotateRight(Node node)
         {
-            var nOldParent = node.Parent;
-            var nOldPGrandParent = nOldParent.Parent;
+            Node? nOldParent = node.Parent;
+            Node? nOldPGrandParent = null;
 
-            nOldParent.Left = node.Right;
-            if (nOldParent.Left != null)
+            if (nOldParent is not null)
             {
-                nOldParent.Left.Parent = nOldParent;
-            }
+                nOldPGrandParent = nOldParent.Parent;
+                nOldParent.Left = node.Right;
+                if (nOldParent.Left != null)
+                {
+                    nOldParent.Left.Parent = nOldParent;
+                }
 
-            nOldParent.Parent = node;
-            node.Right = nOldParent;
+                nOldParent.Parent = node;
+                node.Right = nOldParent;
+            }
 
             UpdateParentPointer(node, nOldParent, nOldPGrandParent);
             UpdateNodeHeights(node);
@@ -244,56 +256,62 @@ namespace AlgoDat
             {
                 n = n.Left;
             }
-            
+
             return n;
         }
 
-        private Node Successor(Node n)
+        private Node? Successor(Node n)
         {
             if (n.Right != null)
             {
                 return Minimum(n.Right);
             }
 
-            Node parent = n.Parent;
+            Node? parent = n.Parent;
             while (parent != null && n == parent.Right)
             {
                 n = parent;
                 parent = parent.Parent;
             }
-            
+
             return parent;
         }
 
-        private void Transplant(Node u, Node v)
+        private void Transplant(Node? u, Node? v)
         {
-            if (u.Parent == null)
+            if (u is not null)
             {
-                Root = v;
-            }
-            else if (u == u.Parent.Left)
-            {
-                u.Parent.Left = v;
-            }
-            else
-            {
-                u.Parent.Right = v;
-            }
-            
-            if (v != null)
-            {
-                v.Parent = u.Parent;
+                if (u.Parent == null)
+                {
+                    Root = v;
+                }
+                else if (u == u.Parent.Left)
+                {
+                    u.Parent.Left = v;
+                }
+                else
+                {
+                    u.Parent.Right = v;
+                }
+
+                if (v != null && u.Parent is not null)
+                {
+                    v.Parent = u.Parent;
+                }
             }
         }
 
-        public void Delete(Node d)
+        public void Delete(Node? d)
         {
-            Node currentNodeWithPossibleViolation = StandardDelete(d);
+            if(d is null)
+                return;
+                
+            Node? currentNodeWithPossibleViolation = StandardDelete(d);
 
             while (currentNodeWithPossibleViolation != null)
             {
                 currentNodeWithPossibleViolation.UpdateHeight();
-                if (   -1 <= currentNodeWithPossibleViolation.BalanceFactor
+                if (-1 <= currentNodeWithPossibleViolation.BalanceFactor
                     && currentNodeWithPossibleViolation.BalanceFactor <= 1)
                 {
                     currentNodeWithPossibleViolation = currentNodeWithPossibleViolation.Parent;
@@ -310,9 +328,9 @@ namespace AlgoDat
         /// <summary>Do a standard serch tree deletion. Don't care about AVL violations at this point</summary>
         /// <param name="d">The node to delete</param>
         /// <returns>The node where to start searching for AVL violations</returns>
-        private Node StandardDelete(Node d)
+        private Node? StandardDelete(Node d)
         {
-            Node nWithPotentialViolation;
+            Node? nWithPotentialViolation = null;
             if (d.Left == null)
             {
                 nWithPotentialViolation = d.Parent;
@@ -327,31 +345,34 @@ namespace AlgoDat
             }
             else
             {
-                Node min = Successor(d);
-                // successor is direct right child
-                // we must start with violation checking there
-                if (d.Right == min)
+                Node? min = Successor(d);
+                if (min is not null)
                 {
-                    nWithPotentialViolation = min;
-                }
-                // otherwise the successor was transplanted
-                // deeply in a subtree and we must start
-                // checking at the former parent of it
-                else
-                {
-                    nWithPotentialViolation = min.Parent;
-                }
-                
+                    // successor is direct right child
+                    // we must start with violation checking there
+                    if (d.Right == min)
+                    {
+                        nWithPotentialViolation = min;
+                    }
+                    // otherwise the successor was transplanted
+                    // deeply in a subtree and we must start
+                    // checking at the former parent of it
+                    else
+                    {
+                        nWithPotentialViolation = min.Parent;
+                    }
 
-                if (min.Parent != d)
-                {
-                    Transplant(min, min.Right);
-                    min.Right = d.Right;
-                    min.Right.Parent = min;
+
+                    if (min.Parent != d)
+                    {
+                        Transplant(min, min.Right);
+                        min.Right = d.Right;
+                        min.Right.Parent = min;
+                    }
+                    Transplant(d, min);
+                    min.Left = d.Left;
+                    min.Left.Parent = min;
                 }
-                Transplant(d, min);
-                min.Left = d.Left;
-                min.Left.Parent = min;
             }
 
             return nWithPotentialViolation;

@@ -15,15 +15,19 @@ namespace AlgoDat
             nextNodes.Enqueue(startNode);
             while (nextNodes.Count > 0)
             {
-                var currentNode = nextNodes.Dequeue();
-                nodeFunction(currentNode);
-                
-                foreach (var neighbour in graph.GetEdges(currentNode))
+                TNode? currentNode = nextNodes.Dequeue();
+
+                if (currentNode is not null)
                 {
-                    if (!visitedNodes.Contains(neighbour))
+                    nodeFunction(currentNode);
+
+                    foreach (var neighbour in graph.GetEdges(currentNode))
                     {
-                        visitedNodes.Add(neighbour);
-                        nextNodes.Enqueue(neighbour);
+                        if (!visitedNodes.Contains(neighbour))
+                        {
+                            visitedNodes.Add(neighbour);
+                            nextNodes.Enqueue(neighbour);
+                        }
                     }
                 }
             }

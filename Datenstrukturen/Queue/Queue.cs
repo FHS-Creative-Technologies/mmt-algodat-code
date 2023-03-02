@@ -24,11 +24,14 @@ namespace AlgoDat
             _list.Append(elem);
         }
 
-        public T Dequeue()
+        public T? Dequeue()
         {
-            DoubleLinkedList<T>.Node<T> elem = _list.Head;
-            _list.Delete(_list.Head);
+            DoubleLinkedList<T>.Node<T>? elem = _list.Head;
 
+            if(elem is null)
+                return default(T);
+
+            _list.Delete(elem);
             return elem.Key;
         }
     }

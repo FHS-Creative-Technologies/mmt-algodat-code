@@ -25,6 +25,10 @@ namespace AlgoDat
             while (queue.Count > 0)
             {
                 var minNode = queue.Dequeue();
+
+                if(minNode is null)
+                    break;
+                    
                 foreach (var edge in graph.GetEdges(minNode))
                 {
                     if (queue.Contains(edge.To) && edge.Weight.CompareTo(weights.Get(edge.To)) < 0)
@@ -46,7 +50,7 @@ namespace AlgoDat
 
             foreach (var kvp in predecessors)
             {
-                if (!kvp.Key.Equals(startNode))
+                if (!kvp.Key.Equals(startNode) && kvp.Value is not null)
                 {
                     mst.AddUndirectedEdge(kvp.Key, kvp.Value, weights.Get(kvp.Key));
                 }

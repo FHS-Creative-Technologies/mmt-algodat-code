@@ -16,54 +16,58 @@ namespace AlgoDat
             while (nextNodes.Count > 0)
             {
                 var currentNode = nextNodes.Pop();
-                nodeFunction(currentNode);
-                
-                foreach (var neighbour in graph.GetEdges(currentNode))
+
+                if (currentNode is not null)
                 {
-                    if (!visitedNodes.Contains(neighbour))
+                    nodeFunction(currentNode);
+
+                    foreach (var neighbour in graph.GetEdges(currentNode))
                     {
-                        visitedNodes.Add(neighbour);
-                        nextNodes.Push(neighbour);
+                        if (!visitedNodes.Contains(neighbour))
+                        {
+                            visitedNodes.Add(neighbour);
+                            nextNodes.Push(neighbour);
+                        }
                     }
                 }
             }
         }
 
-         public static void Travers(Graph<TNode> graph, TNode startNode, ProcessNode nodeFunction)
-         {
-             Dictionary<TNode, Color> nodeColors = new();
+        public static void Travers(Graph<TNode> graph, TNode startNode, ProcessNode nodeFunction)
+        {
+            Dictionary<TNode, Color> nodeColors = new();
 
-             foreach (var node in graph)
-             {
+            foreach (var node in graph)
+            {
                 nodeColors.Add(node, Color.WHITE);
-             }
+            }
 
-             Travers(graph, startNode, nodeFunction, nodeColors);
-         }
+            Travers(graph, startNode, nodeFunction, nodeColors);
+        }
 
-         private static void Travers(Graph<TNode> graph, TNode currentNode, ProcessNode nodeFunction, Dictionary<TNode, Color> nodeColors)
-         {
-             nodeColors.Set(currentNode, Color.GRAY);
-             nodeFunction(currentNode);
+        private static void Travers(Graph<TNode> graph, TNode currentNode, ProcessNode nodeFunction, Dictionary<TNode, Color> nodeColors)
+        {
+            nodeColors.Set(currentNode, Color.GRAY);
+            nodeFunction(currentNode);
 
-             foreach (var neighbour in graph.GetEdges(currentNode))
-             {
+            foreach (var neighbour in graph.GetEdges(currentNode))
+            {
                 if (nodeColors.Get(neighbour).Equals(Color.WHITE))
                 {
                     Travers(graph, neighbour, nodeFunction, nodeColors);
                 }
-             }
+            }
 
-             nodeColors.Set(currentNode, Color.BLACK);
-         }
+            nodeColors.Set(currentNode, Color.BLACK);
+        }
 
-         public enum Color
-         {
-             WHITE,
-             GRAY,
-             BLACK
-         }
+        public enum Color
+        {
+            WHITE,
+            GRAY,
+            BLACK
+        }
     }
 
-   
+
 }

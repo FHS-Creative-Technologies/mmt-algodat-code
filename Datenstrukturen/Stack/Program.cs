@@ -2,7 +2,7 @@
 
 using System;
 
-Stack<int> stack = new();
+AlgoDat.Stack<int> stack = new();
 
 stack.Push(3);
 stack.Push(4);

@@ -49,11 +49,14 @@ namespace AlgoDat
                 // data structure class.
                 foreach (var kvp in elementsToNode)
                 {
-                    // if the set of the current element is
-                    // not in the list, add it.
-                    if (_sets.Search(kvp.Value.Parent) == null)
+                    if(kvp.Value is not null)
                     {
-                        _sets.Add(kvp.Value.Parent);
+                        // if the set of the current element is
+                        // not in the list, add it.
+                        if (_sets.Search(kvp.Value.Parent) == null)
+                        {
+                            _sets.Add(kvp.Value.Parent);
+                        }
                     }
                 }
 
@@ -62,8 +65,7 @@ namespace AlgoDat
 
             public void Dispose()
             {
-                _sets = null;
-                _setsEnumerator = null;
+
             }
 
             public bool MoveNext()
@@ -73,8 +75,7 @@ namespace AlgoDat
 
             public void Reset()
             {
-                _sets = null;
-                _setsEnumerator = null;
+                _setsEnumerator.Reset();
             }
         }
 
@@ -84,7 +85,7 @@ namespace AlgoDat
             {
                 public T Data { get; }
                 public Set Parent { get; set; }
-                public Node Next { get; set; }
+                public Node? Next { get; set; }
 
                 public Node(T data, Set set)
                 {
@@ -93,71 +94,11 @@ namespace AlgoDat
                 }
             }
 
-            public class SetEnumerator : IEnumerator<Node>
-            {
-                public Node Current
-                {
-                    get
-                    {
-                        return _currentNode;
-                    }
-                }
-
-                object IEnumerator.Current
-                {
-                    get
-                    {
-                        return Current;
-                    }
-                }
-
-                private Node _currentNode;
-
-                private bool _firstNode;
-
-                public SetEnumerator(Node head)
-                {
-                    _currentNode = head;
-                    _firstNode = true;
-                }
-
-                public void Dispose()
-                {
-                    _currentNode = null;
-                }
-
-                public bool MoveNext()
-                {
-                    if (_currentNode == null)
-                    {
-                        return false;
-                    }
-
-                    // Do not move the pointer forward if we just started
-                    // with enumeration. Otherwise we would skip the first item
-                    if (_firstNode)
-                    {
-                        _firstNode = false;
-                    }
-                    else
-                    {
-                        _currentNode = _currentNode.Next;
-                    }
-
-                    return _currentNode != null;
-                }
-
-                public void Reset()
-                {
-                    _currentNode = null;
-                }
-            }
-
             public T Ambassador
             {
                 get
                 {
-                    return Head != null ? Head.Data : default(T);
+                    return Head.Data;
                 }
             }
 
@@ -191,7 +132,12 @@ namespace AlgoDat
 
             public IEnumerator<Node> GetEnumerator()
             {
-                return new SetEnumerator(Head);
+                var node = Head;
+                while(node != null)
+                {
+                    yield return node;
+                    node = node.Next;
+                }
             }
 
             IEnumerator IEnumerable.GetEnumerator()
@@ -199,9 +145,12 @@ namespace AlgoDat
                 return GetEnumerator();
             }
 
-            public int CompareTo(Set other)
+            public int CompareTo(Set? other)
             {
-                return Ambassador.CompareTo(other.Ambassador);
+                if(other is null || Ambassador is null)
+                    return int.MaxValue;
+                else
+                    return Ambassador.CompareTo(other.Ambassador);
             }
         }
 
@@ -220,7 +169,7 @@ namespace AlgoDat
             _elementToNode.Add(element, elementSet.Head);
         }
 
-        public T Find(T element)
+        public T? Find(T element)
         {
             if (!_elementToNode.Contains(element))
             {

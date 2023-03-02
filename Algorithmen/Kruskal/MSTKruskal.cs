@@ -27,7 +27,8 @@ namespace AlgoDat
             WeightedGraph<T> mst = new();
             foreach (var edge in edgesArray)
             {
-                if (sets.Find(edge.From).CompareTo(sets.Find(edge.To)) != 0) 
+                var from = sets.Find(edge.From);
+                if (from is not null && from.CompareTo(sets.Find(edge.To)) != 0) 
                 {
                     mst.AddUndirectedEdge(edge.From, edge.To, edge.Weight);
                     sets.Union(edge.From, edge.To);

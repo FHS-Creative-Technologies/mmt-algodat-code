@@ -8,8 +8,8 @@ namespace AlgoDat
         {
             public T Key { get; }
 
-            public Node<U> Left { get; set; }
-            public Node<U> Right { get; set; }
+            public Node<U>? Left { get; set; }
+            public Node<U>? Right { get; set; }
 
             public Node(T key)
             {
@@ -17,9 +17,9 @@ namespace AlgoDat
             }
         }
 
-        public Node<T> Root { get; set; }
+        public Node<T>? Root { get; set; }
 
-        public void InorderTreeWalk(Node<T> node)
+        public void InorderTreeWalk(Node<T>? node)
         {
             if (node == null)
             {

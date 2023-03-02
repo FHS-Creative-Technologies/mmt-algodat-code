@@ -24,11 +24,14 @@ namespace AlgoDat
             _list.Append(elem);
         }
 
-        public T Pop()
+        public T? Pop()
         {
-            DoubleLinkedList<T>.Node<T> elem = _list.Tail;
-            _list.Delete(_list.Tail);
+            DoubleLinkedList<T>.Node<T>? elem = _list.Tail;
 
+            if(elem is null)
+                return default(T);
+
+            _list.Delete(elem);
             return elem.Key;
         }
     }

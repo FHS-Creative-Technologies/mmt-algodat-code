@@ -8,7 +8,7 @@ namespace AlgoDat
     {
         public class HashTableEnumerator : IEnumerator<T>
         {
-            private DoubleLinkedList<T>[] _bins;
+            private DoubleLinkedList<T>[]? _bins;
 
             private int _currentBin;
 
@@ -39,7 +39,7 @@ namespace AlgoDat
 
             public void Dispose()
             {
-                _bins = null;
+                
             }
 
             public bool MoveNext()
@@ -62,15 +62,15 @@ namespace AlgoDat
             private bool FindNextBinEnumerator()
             {
                 // dispose old bin enumerator and find new one
-                _currentBinEnumerator = null;
+                bool foundNew = false;
                 _currentBin++;
 
-                while (_currentBin < _bins.Length && _currentBinEnumerator == null)
+                while (_bins is not null && _currentBin < _bins.Length && !foundNew)
                 {
                     if (_bins[_currentBin].Count > 0)
                     {
                         _currentBinEnumerator = _bins[_currentBin].GetEnumerator();
-
+                        foundNew = true;
                         return true;
                     }
                  
@@ -98,6 +98,7 @@ namespace AlgoDat
 
         public HashTable(int initialCapacity = 256)
         {
+            _bins = new DoubleLinkedList<T>[initialCapacity];
             InitBins(initialCapacity);
         }
 
@@ -163,7 +164,7 @@ namespace AlgoDat
             Count--;
         }
 
-        public T Search(T value)
+        public T? Search(T value)
         {
             int hashCode = GetElementHash(value);
             var kvpNode = _bins[hashCode].Search(value);

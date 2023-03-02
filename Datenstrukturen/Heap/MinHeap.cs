@@ -53,7 +53,7 @@ namespace AlgoDat
             }
         }
 
-        public T ExtractMin()
+        public T? ExtractMin()
         {
             if (_heap.Count == 0)
             {

@@ -11,7 +11,7 @@ namespace AVLTree
         {
             StringBuilder sb = new();
 
-            DotWalk(tree.Root, sb);
+            DotWalk(tree.Root!, sb);
 
             return "digraph {\ngraph [ordering=\"out\"];\n" + sb.ToString() + "}\n";
         }

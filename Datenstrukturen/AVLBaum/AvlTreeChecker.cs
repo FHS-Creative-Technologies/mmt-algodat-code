@@ -9,7 +9,7 @@ namespace AVLTree
     {
         public static void Check(AvlTree<T> tree)
         {
-            CheckWalk(tree, tree.Root);
+            CheckWalk(tree, tree.Root!);
         }
 
         private static int CheckWalk(AvlTree<T> tree, AvlTree<T>.Node node)

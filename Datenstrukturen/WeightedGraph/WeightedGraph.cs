@@ -33,17 +33,20 @@ namespace AlgoDat
 
             public void Dispose()
             {
-                _enumerator = null;
+                
             }
 
             public bool MoveNext()
             {
+                if (_enumerator is null)
+                    return false;
+
                 return _enumerator.MoveNext();
             }
 
             public void Reset()
             {
-                _enumerator = null;
+                _enumerator.Reset();
             }
         }
 
@@ -60,9 +63,10 @@ namespace AlgoDat
                 Weight = weight;
             }
 
-            public int CompareTo(Edge other)
+            public int CompareTo(Edge? other)
             {
-                if (   From.CompareTo(other.From)     == 0
+                if ( other is not null
+                    &&   From.CompareTo(other.From)     == 0
                     && To.CompareTo(other.To)         == 0
                     && Weight.CompareTo(other.Weight) == 0)
                 {
@@ -135,21 +139,24 @@ namespace AlgoDat
 
             foreach (var nodeKvp in _nodes)
             {
-                foreach (var edge in nodeKvp.Value)
+                if(nodeKvp.Value is not null)
                 {
-                    if (asUndirected)
+                    foreach (var edge in nodeKvp.Value)
                     {
-                        // only print the "smaller" node connection
-                        if (edge.From.CompareTo(edge.To) < 0)
+                        if (asUndirected)
                         {
-                            output += $"{edge.From} -- {edge.To} [label=\"{edge.Weight}\"];\n";
+                            // only print the "smaller" node connection
+                            if (edge.From.CompareTo(edge.To) < 0)
+                            {
+                                output += $"{edge.From} -- {edge.To} [label=\"{edge.Weight}\"];\n";
+                            }
                         }
-                    }
-                    else
-                    {
-                        output += $"{edge.From} -> {edge.To} [label=\"{edge.Weight}\"];\n";
-                    }
+                        else
+                        {
+                            output += $"{edge.From} -> {edge.To} [label=\"{edge.Weight}\"];\n";
+                        }
                     
+                    }
                 }
             }
 

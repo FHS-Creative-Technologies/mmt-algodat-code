@@ -33,7 +33,7 @@ namespace AlgoDat
 
             public void Dispose()
             {
-                _enumerator = null;
+                
             }
 
             public bool MoveNext()
@@ -43,7 +43,7 @@ namespace AlgoDat
 
             public void Reset()
             {
-                _enumerator = null;
+                _enumerator.Reset();
             }
         }
 
