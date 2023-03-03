@@ -1,5 +1,3 @@
-using System;
-
 namespace AlgoDat
 {
         class QuickSort<T> where T : IComparable<T>

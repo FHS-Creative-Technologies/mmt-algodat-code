@@ -1,5 +1,4 @@
 ﻿using AlgoDat;
-using System;
 
 int[] numbers = { 7, 2, 109, 19, 28, 1, 10, 4 };
 foreach (int number in numbers)
