@@ -1,7 +1,5 @@
 ﻿using AlgoDat;
 
-using System;
-
 Random r = new();
 int[] randomNumbers = new int[30];
 

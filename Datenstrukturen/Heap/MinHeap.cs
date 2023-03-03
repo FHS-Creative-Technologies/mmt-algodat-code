@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace AlgoDat
 {
     public class MinHeap<T> where T : IComparable<T>
