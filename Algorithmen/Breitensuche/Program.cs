@@ -1,5 +1,4 @@
-﻿using System;
-using AlgoDat;
+﻿using AlgoDat;
 
 Graph<string> graph = new();
 
@@ -14,7 +13,7 @@ graph.AddEdge("f", "c"); graph.AddEdge("c", "f");
 
 BreadthFirstSearch<string>.Travers(graph, "a", DoWithNode);
 
-static void DoWithNode(string node)
+void DoWithNode(string node)
 {
     Console.WriteLine($"Process node {node}");
 }
