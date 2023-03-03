@@ -1,8 +1,4 @@
-﻿using System;
-
-using AlgoDat;
-
-AlgoDat.Dictionary<string, int> dictionary = new();
+﻿AlgoDat.Dictionary<string, int> dictionary = new();
 
 dictionary.Add("Andreas", 35);
 dictionary.Add("Helen", 28);
