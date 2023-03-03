@@ -107,25 +107,27 @@ namespace AlgoDat
 
         private void Transplant(Node<T>? u, Node<T>? v)
         {
-            if (u is not null)
+            if (u is null)
             {
-                if (u.Parent == null)
-                {
-                    Root = v;
-                }
-                else if (u == u.Parent.Left)
-                {
-                    u.Parent.Left = v;
-                }
-                else
-                {
-                    u.Parent.Right = v;
-                }
+                return;
+            }
+            
+            if (u.Parent == null)
+            {
+                Root = v;
+            }
+            else if (u == u.Parent.Left)
+            {
+                u.Parent.Left = v;
+            }
+            else
+            {
+                u.Parent.Right = v;
+            }
 
-                if (v != null)
-                {
-                    v.Parent = u.Parent;
-                }
+            if (v != null)
+            {
+                v.Parent = u.Parent;
             }
         }
 
