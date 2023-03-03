@@ -1,5 +1,3 @@
-using System;
-
 namespace AlgoDat
 {
     public class MergeSort<T> where T : IComparable<T>
