@@ -1,6 +1,4 @@
-﻿using System;
-
-using AlgoDat;
+﻿using AlgoDat;
 
 Graph<string> graph = new();
 
@@ -13,17 +11,18 @@ graph.AddEdge("e", "g"); graph.AddEdge("g", "e");
 graph.AddEdge("e", "f"); graph.AddEdge("f", "e");
 graph.AddEdge("f", "c"); graph.AddEdge("c", "f");
 
+Console.WriteLine("Iterative Version");
 DepthFirstSearch<string>.TraversIterative(graph, "a", DoWithNode);
 
-Console.WriteLine("Recursive");
+Console.WriteLine("Recursive Version");
 DepthFirstSearch<string>.Travers(graph, "a", DoWithNodeRecursive);
 
-static void DoWithNode(string node)
+void DoWithNode(string node)
 {
     Console.WriteLine($"Process node {node}");
 }
 
-static void DoWithNodeRecursive(string node)
+void DoWithNodeRecursive(string node)
 {
     Console.WriteLine($"Process recursive node {node}");
 }
