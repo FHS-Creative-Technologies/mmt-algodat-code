@@ -1,5 +1,4 @@
 ﻿using AlgoDat;
-using System;
 
 Graph<int> graph = new();
 
