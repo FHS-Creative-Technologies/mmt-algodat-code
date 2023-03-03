@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using AlgoDat;
+﻿using AlgoDat;
 
 List<int> numbers = new(new int[] { 1, 2, 4, 5, 7, 9, 12 });
 
