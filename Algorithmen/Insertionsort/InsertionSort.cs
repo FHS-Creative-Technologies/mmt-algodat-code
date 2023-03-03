@@ -1,5 +1,3 @@
-using System;
-
 namespace AlgoDat
 {    
     class InsertionSort<T> where T : IComparable<T>

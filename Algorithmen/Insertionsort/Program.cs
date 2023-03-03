@@ -1,5 +1,4 @@
 ﻿using AlgoDat;
-using System;
 
 int[] numbers = { 10, 6, 2, 9, 3, 7, 1 };
 
