@@ -1,6 +1,5 @@
 using AlgoDat;
 
-using System;
 using System.Diagnostics;
 
 namespace AVLTree

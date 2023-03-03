@@ -1,5 +1,3 @@
-using System;
-
 namespace AlgoDat
 {
     public class AvlTree<T> where T : IComparable<T>
@@ -304,7 +302,7 @@ namespace AlgoDat
         public void Delete(Node? d)
         {
             if (d is null)
-            { 
+            {
                 return;
             }
 

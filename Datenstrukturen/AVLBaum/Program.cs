@@ -1,13 +1,10 @@
 ﻿using AlgoDat;
 using AVLTree;
 
-using System;
-using System.Collections.Generic;
-
 TestInsert();
 TestDelete();
 
-static void TestDelete()
+void TestDelete()
 {
     AvlTree<int> tree = new();
     List<int> insertedNumbers = new();
@@ -36,7 +33,7 @@ static void TestDelete()
     }
 }
 
-static void TestInsert()
+void TestInsert()
 {
     AvlTree<int> tree = new();
 
