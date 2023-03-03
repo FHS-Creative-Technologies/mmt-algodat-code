@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace AlgoDat
 {
     public static class MSTKruskal<T> where T : IComparable<T>
