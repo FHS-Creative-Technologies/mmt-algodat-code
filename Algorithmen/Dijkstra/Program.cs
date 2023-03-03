@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-using AlgoDat;
+﻿using AlgoDat;
 
 WeightedGraph<string> graph = new();
 
@@ -17,7 +14,7 @@ graph.AddEdge("z", "x", 6);
 graph.AddEdge("z", "s", 7);
 
 List<string> shortestPath = ShortestPath<string>.Compute(graph, "s", "x");
-
+Console.WriteLine("Compute shortest path s -> x");
 foreach (var node in shortestPath)
 {
     Console.WriteLine($"Node {node}");
