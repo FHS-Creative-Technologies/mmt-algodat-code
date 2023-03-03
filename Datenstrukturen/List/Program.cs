@@ -1,6 +1,4 @@
-﻿using System;
-
-using AlgoDat;
+﻿using AlgoDat;
 
 DoubleLinkedList<int> myList = new();
 
