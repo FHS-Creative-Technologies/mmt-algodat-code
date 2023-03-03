@@ -1,15 +1,11 @@
-﻿using AlgoDat;
-
-using System;
-
-AlgoDat.Queue<int> q = new();
+﻿AlgoDat.Queue<int> q = new();
 
 q.Enqueue(5);
 q.Enqueue(3);
 q.Enqueue(7);
 q.Enqueue(1);
 
-for (int i = 0; i < 4; i++)
+while (q.Count > 0)
 {
     Console.WriteLine($"{q.Dequeue()}");
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace AlgoDat
 {
     public class Queue<T> where T : IComparable<T>
@@ -28,12 +26,13 @@ namespace AlgoDat
         {
             DoubleLinkedList<T>.Node<T>? elem = _list.Head;
 
-            if (elem is null)
-            { 
-                return default(T); 
+            if(elem is null)
+            {
+                return default(T);
             }
 
             _list.Delete(elem);
+
             return elem.Key;
         }
     }
