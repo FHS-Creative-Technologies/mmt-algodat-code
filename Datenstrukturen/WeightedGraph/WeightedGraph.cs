@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 
 namespace AlgoDat
 {
@@ -67,9 +65,9 @@ namespace AlgoDat
 
             public int CompareTo(Edge? other)
             {
-                if (other is not null
-                    && From.CompareTo(other.From) == 0
-                    && To.CompareTo(other.To) == 0
+                if (   other is not null
+                    && From.CompareTo(other.From)     == 0
+                    && To.CompareTo(other.To)         == 0
                     && Weight.CompareTo(other.Weight) == 0)
                 {
                     return 0;

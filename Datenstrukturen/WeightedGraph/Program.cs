@@ -1,6 +1,4 @@
-﻿using System;
-
-using AlgoDat;
+﻿using AlgoDat;
 
 WeightedGraph<int> graph = new();
 
