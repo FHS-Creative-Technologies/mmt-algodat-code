@@ -1,5 +1,3 @@
-using System;
-
 namespace AlgoDat
 {
     public static class JaroWinkler
