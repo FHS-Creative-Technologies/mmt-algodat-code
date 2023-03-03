@@ -23,7 +23,7 @@ namespace AlgoDat
                 get
                 {
                     return Current;
-                }                
+                }
             }
 
             public WeightedGraphEnumerator(Dictionary<TNode, DoubleLinkedList<Edge>> nodes)
@@ -33,13 +33,15 @@ namespace AlgoDat
 
             public void Dispose()
             {
-                
+
             }
 
             public bool MoveNext()
             {
                 if (_enumerator is null)
-                    return false;
+                { 
+                    return false; 
+                }
 
                 return _enumerator.MoveNext();
             }
@@ -65,9 +67,9 @@ namespace AlgoDat
 
             public int CompareTo(Edge? other)
             {
-                if ( other is not null
-                    &&   From.CompareTo(other.From)     == 0
-                    && To.CompareTo(other.To)         == 0
+                if (other is not null
+                    && From.CompareTo(other.From) == 0
+                    && To.CompareTo(other.To) == 0
                     && Weight.CompareTo(other.Weight) == 0)
                 {
                     return 0;
@@ -139,7 +141,7 @@ namespace AlgoDat
 
             foreach (var nodeKvp in _nodes)
             {
-                if(nodeKvp.Value is not null)
+                if (nodeKvp.Value is not null)
                 {
                     foreach (var edge in nodeKvp.Value)
                     {
@@ -155,7 +157,7 @@ namespace AlgoDat
                         {
                             output += $"{edge.From} -> {edge.To} [label=\"{edge.Weight}\"];\n";
                         }
-                    
+
                     }
                 }
             }

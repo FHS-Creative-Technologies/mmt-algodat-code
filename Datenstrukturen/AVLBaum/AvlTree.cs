@@ -303,9 +303,11 @@ namespace AlgoDat
 
         public void Delete(Node? d)
         {
-            if(d is null)
+            if (d is null)
+            { 
                 return;
-                
+            }
+
             Node? currentNodeWithPossibleViolation = StandardDelete(d);
 
             while (currentNodeWithPossibleViolation != null)

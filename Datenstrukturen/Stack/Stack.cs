@@ -28,8 +28,10 @@ namespace AlgoDat
         {
             DoubleLinkedList<T>.Node<T>? elem = _list.Tail;
 
-            if(elem is null)
-                return default(T);
+            if (elem is null)
+            { 
+                return default(T); 
+            }
 
             _list.Delete(elem);
             return elem.Key;

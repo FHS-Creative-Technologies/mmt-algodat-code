@@ -49,7 +49,7 @@ namespace AlgoDat
                 // data structure class.
                 foreach (var kvp in elementsToNode)
                 {
-                    if(kvp.Value is not null)
+                    if (kvp.Value is not null)
                     {
                         // if the set of the current element is
                         // not in the list, add it.
@@ -133,7 +133,7 @@ namespace AlgoDat
             public IEnumerator<Node> GetEnumerator()
             {
                 var node = Head;
-                while(node != null)
+                while (node != null)
                 {
                     yield return node;
                     node = node.Next;
@@ -147,8 +147,10 @@ namespace AlgoDat
 
             public int CompareTo(Set? other)
             {
-                if(other is null || Ambassador is null)
-                    return int.MaxValue;
+                if (other is null || Ambassador is null)
+                { 
+                    return int.MaxValue; 
+                }
                 else
                     return Ambassador.CompareTo(other.Ambassador);
             }

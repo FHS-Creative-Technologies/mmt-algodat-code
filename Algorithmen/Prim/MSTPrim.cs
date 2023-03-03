@@ -26,9 +26,11 @@ namespace AlgoDat
             {
                 var minNode = queue.Dequeue();
 
-                if(minNode is null)
+                if (minNode is null)
+                { 
                     break;
-                    
+                }
+
                 foreach (var edge in graph.GetEdges(minNode))
                 {
                     if (queue.Contains(edge.To) && edge.Weight.CompareTo(weights.Get(edge.To)) < 0)

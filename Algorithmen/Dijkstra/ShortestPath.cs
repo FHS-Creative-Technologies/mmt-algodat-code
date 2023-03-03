@@ -21,9 +21,11 @@ namespace AlgoDat
             {
                 var nextNode = queue.Dequeue();
 
-                if(nextNode is null)
-                    break;
-                    
+                if (nextNode is null)
+                { 
+                    break; 
+                }
+
                 if (nextNode.Equals(to))
                 {
                     break;
