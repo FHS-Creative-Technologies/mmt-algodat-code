@@ -1,5 +1,3 @@
-using System;
-
 namespace AlgoDat
 {
     class Tree<T>
