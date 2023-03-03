@@ -1,8 +1,4 @@
-﻿using System;
-
-using AlgoDat;
-
-AlgoDat.PriorityQueue<string, int> pq = new();
+﻿AlgoDat.PriorityQueue<string, int> pq = new();
 
 pq.Enqueue("Andreas", 2);
 pq.Enqueue("Brigitte", 3);
