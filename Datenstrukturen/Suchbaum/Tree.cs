@@ -2,7 +2,7 @@ using System;
 
 namespace AlgoDat
 {
-    class Tree<T> where T : IComparable<T>
+    public class Tree<T> where T : IComparable<T>
     {
         public class Node<U>
         {
