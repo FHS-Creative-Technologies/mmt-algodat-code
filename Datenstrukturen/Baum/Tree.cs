@@ -1,6 +1,6 @@
 namespace AlgoDat
 {
-    class Tree<T>
+    public class Tree<T>
     {
         public class Node<U>
         {
