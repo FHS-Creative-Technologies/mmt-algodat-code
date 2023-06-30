@@ -172,7 +172,7 @@ namespace AlgoDat
 
         public bool Contains(T value)
         {
-            return Search(value) != null;
+            return !object.Equals(Search(value), default(T));
         }
 
         public IEnumerator<T> GetEnumerator()
