@@ -4,7 +4,6 @@
     <ProjectReference Include="..\..\Datenstrukturen\UnionFind\code-ds-union-find.csproj" />
     <ProjectReference Include="..\..\Datenstrukturen\WeightedGraph\code-ds-graph-gewichtet.csproj" />
     <ProjectReference Include="..\..\Datenstrukturen\List\code-ds-listen.csproj" />
-    <ProjectReference Include="..\Mergesort\code-alg-mergesort.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

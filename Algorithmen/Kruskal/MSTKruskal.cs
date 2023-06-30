@@ -2,6 +2,14 @@ namespace AlgoDat
 {
     public static class MSTKruskal<T> where T : IComparable<T>
     {
+        public class EdgeWeightComparer : IComparer<WeightedGraph<T>.Edge>
+        {
+            public int Compare(WeightedGraph<T>.Edge? x, WeightedGraph<T>.Edge? y)
+            {
+                return x!.Weight.CompareTo(y!.Weight);
+            }
+        }
+
         public static WeightedGraph<T> CreateMinimumSpanningTree(WeightedGraph<T> graph)
         {
             UnionFind<T> sets = new();
@@ -19,7 +27,7 @@ namespace AlgoDat
                 }
             }
             WeightedGraph<T>.Edge[] edgesArray = edges.ToArray();
-            MergeSort<WeightedGraph<T>.Edge>.Sort(edgesArray);
+            Array.Sort<WeightedGraph<T>.Edge>(edgesArray, new EdgeWeightComparer());
 
             WeightedGraph<T> mst = new();
             foreach (var edge in edgesArray)
