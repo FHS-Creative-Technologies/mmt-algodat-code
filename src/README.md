@@ -1,12 +1,12 @@
 # Introduction
 
 This NuGet package provides reference implementations for various algorithms and data structures taught
-at the [University of Applied Sciences](https://www.fh-salzburg.ac.at) in the [MultiMediaTechnology degree program](https://www.fh-salzburg.ac.at/studium/ct/multimediatechnology-bachelor)
+at the [Salzburg University of Applied Sciences](https://www.fh-salzburg.ac.at) in the [MultiMediaTechnology degree program](https://www.fh-salzburg.ac.at/studium/ct/multimediatechnology-bachelor)
 within the lecture Algorithms and Data Structures.
 
 All implementations are stacking on each other. That means if a complex data structure / algorithm uses other data structures they are provided as reference implementation as well.
 
-Most of the ideas are from Introduction to Algorithms, Third Edition, September 2009.
+Most of the ideas are from Introduction to Algorithms, Third Edition, September 2009, by Cormen et al.
 
 ## Implemented Algorithms
 
