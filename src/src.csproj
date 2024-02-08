@@ -6,24 +6,26 @@
     <Nullable>enable</Nullable>
 
     <PackageId>FHS.CT.AlgoDat</PackageId>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Andreas Bilke</Authors>
     <Title>Algorithm and data structures reference implementation</Title>
     <Company>Fachhochschule Salzburg / Department Creative Technologies</Company>
     <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://gitlab.mediacube.at/fhs46911/algodat-code</RepositoryUrl>
-    <PackageProjectUrl>https://gitlab.mediacube.at/fhs46911/algodat-code</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/FHS-Creative-Technologies/mmt-algodat-code/</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/FHS-Creative-Technologies/mmt-algodat-code/</PackageProjectUrl>
     <PackageIcon>icon.png</PackageIcon>
     <PackageTags>algorithms datastructures tree graph hashes queue</PackageTags>
     <Description>
       Algorithms and data structures teached at University of Applied Sciences Salzburg, MMT degree program
     </Description>
+    <IncludeSource>true</IncludeSource>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="\"/>
-    <None Include="../icon.png" Pack="true" PackagePath="\"/>
+    <None Include="../LICENSE" Pack="true" PackagePath=""/>
+    <None Include="README.md" Pack="true" PackagePath=""/>
+    <None Include="../icon.png" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
