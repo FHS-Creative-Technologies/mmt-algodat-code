@@ -21,7 +21,7 @@ Most of the ideas are from Introduction to Algorithms, Third Edition, September 
 - Stack / Queue
 - Priority Queue
 - Dictionary / Hash Table
-- Binary Search Tree and AVL Tree
+- Binary Search Tree, AVL Tree and B-Tree
 - Min Heap
 - Union Find
 - Graph / Weighted Graph
