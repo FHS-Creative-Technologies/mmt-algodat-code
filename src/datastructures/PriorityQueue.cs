@@ -16,7 +16,7 @@
 
 namespace FHS.CT.AlgoDat
 {
-    /// <summmary>
+    /// <summary>
     /// Implement a priority queue with the logic of a min-heap.
     /// This implementation also implements an efficient way of decreasing
     /// the priority value of one element
