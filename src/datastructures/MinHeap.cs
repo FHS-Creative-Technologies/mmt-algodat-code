@@ -1,5 +1,5 @@
 // AlgoDat Implementation
-// Copyright (C) 2024  Fachhochschule Salzburg / Department Creative Technologie / Andreas Bilke
+// Copyright (C) 2024  Fachhochschule Salzburg / Department Creative Technologies / Andreas Bilke
 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
