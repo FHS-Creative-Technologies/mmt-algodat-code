@@ -1,4 +1,4 @@
-﻿using FHS.CT.AlgoDat.Datastructures;
+﻿using FHS.CT.AlgoDat.DataStructures;
 
 Graph<int> graph = new();
 

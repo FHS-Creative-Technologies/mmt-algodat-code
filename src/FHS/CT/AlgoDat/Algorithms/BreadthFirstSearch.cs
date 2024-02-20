@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using FHS.CT.AlgoDat.Datastructures;
+using FHS.CT.AlgoDat.DataStructures;
 
 namespace FHS.CT.AlgoDat.Algorithms
 {
@@ -25,7 +25,7 @@ namespace FHS.CT.AlgoDat.Algorithms
         public static void Travers(Graph<TNode> graph, TNode startNode, ProcessNode nodeFunction)
         {
             HashTable<TNode> visitedNodes = new();
-            Datastructures.Queue<TNode> nextNodes = new();
+            DataStructures.Queue<TNode> nextNodes = new();
 
             visitedNodes.Add(startNode);
             nextNodes.Enqueue(startNode);

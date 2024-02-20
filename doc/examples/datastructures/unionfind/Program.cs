@@ -1,4 +1,4 @@
-﻿using FHS.CT.AlgoDat.Datastructures;
+﻿using FHS.CT.AlgoDat.DataStructures;
 
 List<int> numbers = new(new int[] { 1, 2, 4, 5, 7, 9, 12 });
 

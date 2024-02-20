@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using FHS.CT.AlgoDat.Datastructures;
+using FHS.CT.AlgoDat.DataStructures;
 
 namespace FHS.CT.AlgoDat.Algorithms
 {
@@ -22,11 +22,11 @@ namespace FHS.CT.AlgoDat.Algorithms
     {
         public static List<T> Compute(WeightedGraph<T> graph, T from, T to)
         {
-            Datastructures.Dictionary<T, double> distance = new();
-            Datastructures.Dictionary<T, T> predecessors = new();
+            DataStructures.Dictionary<T, double> distance = new();
+            DataStructures.Dictionary<T, T> predecessors = new();
             Init(graph, from, distance, predecessors);
 
-            Datastructures.PriorityQueue<T, double> queue = new();
+            DataStructures.PriorityQueue<T, double> queue = new();
             foreach (var node in graph)
             {
                 queue.Enqueue(node, distance.Get(node));
@@ -59,7 +59,7 @@ namespace FHS.CT.AlgoDat.Algorithms
             return ConstructPath(from, to, predecessors);
         }
 
-        private static List<T> ConstructPath(T from, T to, Datastructures.Dictionary<T, T> predecessors)
+        private static List<T> ConstructPath(T from, T to, DataStructures.Dictionary<T, T> predecessors)
         {
             List<T> path = new();
 
@@ -76,8 +76,8 @@ namespace FHS.CT.AlgoDat.Algorithms
         }
 
         private static void Init(WeightedGraph<T> graph, T start,
-                                 Datastructures.Dictionary<T, double> distance,
-                                 Datastructures.Dictionary<T, T> predecessors)
+                                 DataStructures.Dictionary<T, double> distance,
+                                 DataStructures.Dictionary<T, T> predecessors)
         {
             foreach (var node in graph)
             {
@@ -89,8 +89,8 @@ namespace FHS.CT.AlgoDat.Algorithms
         }
 
         private static bool Relax(T u, T v,
-                                  double newDistance, Datastructures.Dictionary<T, double> distance,
-                                  Datastructures.Dictionary<T, T> predecessors)
+                                  double newDistance, DataStructures.Dictionary<T, double> distance,
+                                  DataStructures.Dictionary<T, T> predecessors)
         {
             if (distance.Get(v).CompareTo(distance.Get(u) + newDistance) > 0)
             {

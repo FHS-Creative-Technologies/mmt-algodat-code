@@ -1,4 +1,4 @@
-﻿using FHS.CT.AlgoDat.Datastructures;
+﻿using FHS.CT.AlgoDat.DataStructures;
 
 Tree<int> tree = new();
 Tree<int>.Node<int> root = new(5);

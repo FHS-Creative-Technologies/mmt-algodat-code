@@ -1,5 +1,5 @@
 ﻿using FHS.CT.AlgoDat.Algorithms;
-using FHS.CT.AlgoDat.Datastructures;
+using FHS.CT.AlgoDat.DataStructures;
 
 WeightedGraph<string> graph = new();
 

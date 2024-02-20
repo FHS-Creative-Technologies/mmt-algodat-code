@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-using FHS.CT.AlgoDat.Datastructures;
+using FHS.CT.AlgoDat.DataStructures;
 
 namespace FHS.CT.AlgoDat.Algorithms
 {
@@ -22,8 +22,8 @@ namespace FHS.CT.AlgoDat.Algorithms
     {
         public static WeightedGraph<T> CreateMinimumSpanningTree(WeightedGraph<T> graph, T startNode)
         {
-            Datastructures.Dictionary<T, double> weights = new();
-            Datastructures.Dictionary<T, T> predecessors = new();
+            DataStructures.Dictionary<T, double> weights = new();
+            DataStructures.Dictionary<T, T> predecessors = new();
 
             foreach (var node in graph)
             {
@@ -32,7 +32,7 @@ namespace FHS.CT.AlgoDat.Algorithms
             }
             weights.Set(startNode, 0);
 
-            Datastructures.PriorityQueue<T, double> queue = new();
+            DataStructures.PriorityQueue<T, double> queue = new();
             foreach (var node in graph)
             {
                 queue.Enqueue(node, weights.Get(node));
@@ -62,7 +62,7 @@ namespace FHS.CT.AlgoDat.Algorithms
             return GraphFromPredecessorList(predecessors, weights, startNode);
         }
 
-        private static WeightedGraph<T> GraphFromPredecessorList(Datastructures.Dictionary<T, T> predecessors, Datastructures.Dictionary<T, double> weights, T startNode)
+        private static WeightedGraph<T> GraphFromPredecessorList(DataStructures.Dictionary<T, T> predecessors, DataStructures.Dictionary<T, double> weights, T startNode)
         {
             WeightedGraph<T> mst = new();
 

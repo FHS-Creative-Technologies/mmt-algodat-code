@@ -16,7 +16,7 @@
 
 using System.Collections;
 
-namespace FHS.CT.AlgoDat.Datastructures
+namespace FHS.CT.AlgoDat.DataStructures
 {
     public class UnionFind<T> : IEnumerable<UnionFind<T>.Set> where T : IComparable<T>
     {
