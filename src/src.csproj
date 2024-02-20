@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
 
     <PackageId>FHS.CT.AlgoDat</PackageId>
-    <Version>1.0.2</Version>
+    <Version>1.1.1</Version>
     <Authors>Andreas Bilke</Authors>
     <Title>Algorithm and data structures reference implementation</Title>
     <Company>Fachhochschule Salzburg / Department Creative Technologies</Company>
