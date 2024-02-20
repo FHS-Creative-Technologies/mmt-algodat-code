@@ -20,6 +20,8 @@
       Algorithms and data structures teached at University of Applied Sciences Salzburg, MMT degree program
     </Description>
     <IncludeSource>true</IncludeSource>
+    <Product>FHS.CT.AlgoDat</Product>
+    <AssemblyName>FHS.CT.AlgoDat</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>

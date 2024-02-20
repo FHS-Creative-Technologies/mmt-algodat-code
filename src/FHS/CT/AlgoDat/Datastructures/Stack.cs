@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace FHS.CT.AlgoDat
+namespace FHS.CT.AlgoDat.Datastructures
 {
-    public class Queue<T> where T : IComparable<T>
+    public class Stack<T> where T : IComparable<T>
     {
         private DoubleLinkedList<T> _list;
 
@@ -28,19 +28,19 @@ namespace FHS.CT.AlgoDat
             }
         }
 
-        public Queue()
+        public Stack()
         {
             _list = new();
         }
 
-        public void Enqueue(T elem)
+        public void Push(T elem)
         {
             _list.Append(elem);
         }
 
-        public T? Dequeue()
+        public T? Pop()
         {
-            DoubleLinkedList<T>.Node<T>? elem = _list.Head;
+            DoubleLinkedList<T>.Node<T>? elem = _list.Tail;
 
             if(elem is null)
             {

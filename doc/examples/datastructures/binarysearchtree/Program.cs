@@ -1,4 +1,4 @@
-﻿using FHS.CT.AlgoDat;
+﻿using FHS.CT.AlgoDat.Datastructures;
 
 BinarySearchTree<int> tree = new();
 tree.Insert(4);

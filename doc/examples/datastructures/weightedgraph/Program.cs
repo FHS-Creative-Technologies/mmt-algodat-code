@@ -1,4 +1,4 @@
-﻿using FHS.CT.AlgoDat;
+﻿using FHS.CT.AlgoDat.Datastructures;
 
 WeightedGraph<int> graph = new();
 

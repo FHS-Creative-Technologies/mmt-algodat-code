@@ -14,42 +14,35 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace FHS.CT.AlgoDat
+namespace FHS.CT.AlgoDat.Datastructures
 {
-    public class Stack<T> where T : IComparable<T>
+    public class Tree<T>
     {
-        private DoubleLinkedList<T> _list;
-
-        public int Count
+        public class Node<U>
         {
-            get
+            public T Key { get; }
+
+            public Node<U>? Left { get; set; }
+            public Node<U>? Right { get; set; }
+
+            public Node(T key)
             {
-                return _list.Count;
+                Key = key;
             }
         }
 
-        public Stack()
-        {
-            _list = new();
-        }
+        public Node<T>? Root { get; set; }
 
-        public void Push(T elem)
+        public void InorderTreeWalk(Node<T>? node)
         {
-            _list.Append(elem);
-        }
-
-        public T? Pop()
-        {
-            DoubleLinkedList<T>.Node<T>? elem = _list.Tail;
-
-            if(elem is null)
+            if (node == null)
             {
-                return default(T);
+                return;
             }
 
-            _list.Delete(elem);
-
-            return elem.Key;
+            InorderTreeWalk(node.Left);
+            Console.WriteLine(node.Key);
+            InorderTreeWalk(node.Right);
         }
     }
 }

@@ -14,7 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace FHS.CT.AlgoDat
+using FHS.CT.AlgoDat.Datastructures;
+
+namespace FHS.CT.AlgoDat.Algorithms
 {
     public static class DepthFirstSearch<TNode> where TNode : IComparable<TNode>
     {
@@ -23,7 +25,7 @@ namespace FHS.CT.AlgoDat
         public static void TraversIterative(Graph<TNode> graph, TNode startNode, ProcessNode nodeFunction)
         {
             HashTable<TNode> visitedNodes = new();
-            Stack<TNode> nextNodes = new();
+            Datastructures.Stack<TNode> nextNodes = new();
 
             visitedNodes.Add(startNode);
             nextNodes.Push(startNode);
@@ -49,7 +51,7 @@ namespace FHS.CT.AlgoDat
 
         public static void Travers(Graph<TNode> graph, TNode startNode, ProcessNode nodeFunction)
         {
-            Dictionary<TNode, Color> nodeColors = new();
+            Datastructures.Dictionary<TNode, Color> nodeColors = new();
 
             foreach (var node in graph)
             {
@@ -59,7 +61,7 @@ namespace FHS.CT.AlgoDat
             Travers(graph, startNode, nodeFunction, nodeColors);
         }
 
-        private static void Travers(Graph<TNode> graph, TNode currentNode, ProcessNode nodeFunction, Dictionary<TNode, Color> nodeColors)
+        private static void Travers(Graph<TNode> graph, TNode currentNode, ProcessNode nodeFunction, Datastructures.Dictionary<TNode, Color> nodeColors)
         {
             nodeColors.Set(currentNode, Color.GRAY);
             nodeFunction(currentNode);

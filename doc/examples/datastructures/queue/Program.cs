@@ -1,5 +1,5 @@
 ﻿// provide fully qualified name here since .NET has its own Queue
-FHS.CT.AlgoDat.Queue<int> q = new();
+FHS.CT.AlgoDat.Datastructures.Queue<int> q = new();
 
 q.Enqueue(5);
 q.Enqueue(3);

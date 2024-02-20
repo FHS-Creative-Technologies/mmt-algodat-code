@@ -14,14 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace FHS.CT.AlgoDat
+using FHS.CT.AlgoDat.Datastructures;
+
+namespace FHS.CT.AlgoDat.Algorithms
 {
     public static class MSTPrim<T> where T : IComparable<T>
     {
         public static WeightedGraph<T> CreateMinimumSpanningTree(WeightedGraph<T> graph, T startNode)
         {
-            Dictionary<T, double> weights = new();
-            Dictionary<T, T> predecessors = new();
+            Datastructures.Dictionary<T, double> weights = new();
+            Datastructures.Dictionary<T, T> predecessors = new();
 
             foreach (var node in graph)
             {
@@ -30,7 +32,7 @@ namespace FHS.CT.AlgoDat
             }
             weights.Set(startNode, 0);
 
-            PriorityQueue<T, double> queue = new();
+            Datastructures.PriorityQueue<T, double> queue = new();
             foreach (var node in graph)
             {
                 queue.Enqueue(node, weights.Get(node));
@@ -60,7 +62,7 @@ namespace FHS.CT.AlgoDat
             return GraphFromPredecessorList(predecessors, weights, startNode);
         }
 
-        private static WeightedGraph<T> GraphFromPredecessorList(Dictionary<T, T> predecessors, Dictionary<T, double> weights, T startNode)
+        private static WeightedGraph<T> GraphFromPredecessorList(Datastructures.Dictionary<T, T> predecessors, Datastructures.Dictionary<T, double> weights, T startNode)
         {
             WeightedGraph<T> mst = new();
 

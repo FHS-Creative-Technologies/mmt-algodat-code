@@ -16,7 +16,7 @@
 
 using System.Collections;
 
-namespace FHS.CT.AlgoDat
+namespace FHS.CT.AlgoDat.Datastructures
 {
     public class HashTable<T> : IEnumerable<T> where T : IComparable<T>
     {

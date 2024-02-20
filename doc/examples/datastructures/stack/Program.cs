@@ -1,5 +1,5 @@
 ﻿// provides fully qualified name since .NET has its own Stack
-FHS.CT.AlgoDat.Stack<int> stack = new();
+FHS.CT.AlgoDat.Datastructures.Stack<int> stack = new();
 
 stack.Push(3);
 stack.Push(4);

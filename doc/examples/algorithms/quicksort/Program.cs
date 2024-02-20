@@ -1,4 +1,4 @@
-﻿using FHS.CT.AlgoDat;
+﻿using FHS.CT.AlgoDat.Algorithms;
 
 int[] numbers = { 7, 2, 109, 19, 28, 1, 10, 4 };
 foreach (int number in numbers)

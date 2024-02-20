@@ -14,25 +14,42 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace FHS.CT.AlgoDat
-{    
-    public class InsertionSort<T> where T : IComparable<T>
+namespace FHS.CT.AlgoDat.Datastructures
+{
+    public class Queue<T> where T : IComparable<T>
     {
-        public static void Sort(T[] list)
+        private DoubleLinkedList<T> _list;
+
+        public int Count
         {
-            for (int j = 1; j < list.Length; j++)
+            get
             {
-                T key = list[j];
-
-                int i = j - 1;
-                while (i >= 0 && list[i].CompareTo(key) > 0)
-                {
-                    list[i + 1] = list[i];
-                    i--;
-                }
-
-                list[i + 1] = key;
+                return _list.Count;
             }
+        }
+
+        public Queue()
+        {
+            _list = new();
+        }
+
+        public void Enqueue(T elem)
+        {
+            _list.Append(elem);
+        }
+
+        public T? Dequeue()
+        {
+            DoubleLinkedList<T>.Node<T>? elem = _list.Head;
+
+            if(elem is null)
+            {
+                return default(T);
+            }
+
+            _list.Delete(elem);
+
+            return elem.Key;
         }
     }
 }

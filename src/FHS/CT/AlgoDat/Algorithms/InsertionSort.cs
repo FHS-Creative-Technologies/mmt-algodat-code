@@ -14,35 +14,25 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-namespace FHS.CT.AlgoDat
-{
-    public class Tree<T>
+namespace FHS.CT.AlgoDat.Algorithms
+{    
+    public class InsertionSort<T> where T : IComparable<T>
     {
-        public class Node<U>
+        public static void Sort(T[] list)
         {
-            public T Key { get; }
-
-            public Node<U>? Left { get; set; }
-            public Node<U>? Right { get; set; }
-
-            public Node(T key)
+            for (int j = 1; j < list.Length; j++)
             {
-                Key = key;
+                T key = list[j];
+
+                int i = j - 1;
+                while (i >= 0 && list[i].CompareTo(key) > 0)
+                {
+                    list[i + 1] = list[i];
+                    i--;
+                }
+
+                list[i + 1] = key;
             }
-        }
-
-        public Node<T>? Root { get; set; }
-
-        public void InorderTreeWalk(Node<T>? node)
-        {
-            if (node == null)
-            {
-                return;
-            }
-
-            InorderTreeWalk(node.Left);
-            Console.WriteLine(node.Key);
-            InorderTreeWalk(node.Right);
         }
     }
 }

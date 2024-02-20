@@ -1,6 +1,6 @@
 namespace BTree;
 
-using FHS.CT.AlgoDat;
+using FHS.CT.AlgoDat.Datastructures;
 
 public class BTreeTests
 {

@@ -1,5 +1,5 @@
 ﻿// use fully qualified name here since .NET provides its own PriorityQueue
-FHS.CT.AlgoDat.PriorityQueue<string, int> pq = new();
+FHS.CT.AlgoDat.Datastructures.PriorityQueue<string, int> pq = new();
 
 pq.Enqueue("Andreas", 2);
 pq.Enqueue("Brigitte", 3);
