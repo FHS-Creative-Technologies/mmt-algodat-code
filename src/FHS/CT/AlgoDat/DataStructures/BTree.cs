@@ -301,23 +301,21 @@ namespace FHS.CT.AlgoDat.DataStructures
         private void DeleteInternalSubtree(Node node, T key, int position)
         {
             // key must either be in the i or i + 1 subtree
-            Node subTree;
             int subTreeIndex;
             if (key.CompareTo(node.Keys[position]) < 0)
             {
-                subTree = node.Children[position]!;
                 subTreeIndex = position;
             }
             else
             {
-                subTree = node.Children[position + 1]!;
                 subTreeIndex = position + 1;
             }
+            var subTree = node.Children[subTreeIndex]!;
 
             // subtree has not enough keys, fix situation with 3a or 3b
             if (subTree.N == _minDegree - 1)
             {
-                DeleteInternalFixUnderfullSubtrees(node, position, subTree, subTreeIndex);
+                subTree = DeleteInternalFixUnderfullSubtrees(node, position, subTree, subTreeIndex);
             }
 
             // in any case: delete key within the subtree
@@ -333,33 +331,41 @@ namespace FHS.CT.AlgoDat.DataStructures
         /// <param name="positionInNodeKeys">The position of <c>subTree</c> in <c>node</c>'s child list</param>
         /// <param name="subTree">The sub tree with just t - 1 keys</param>
         /// <param name="subTreePosition">The index where <c>subTree</c> resides in <c>node</c></param>
+        /// <returns>Subtree reference for further processing</returns>
         /// <exception cref="NotImplementedException"></exception>
-        private void DeleteInternalFixUnderfullSubtrees(Node node, int positionInNodeKeys, Node subTree, int subTreePosition)
+        private Node DeleteInternalFixUnderfullSubtrees(Node node, int positionInNodeKeys, Node subTree, int subTreePosition)
         {
             // case 3a. Left sibling has enough keys
             if (subTreePosition > 0 && node.Children[subTreePosition - 1]!.N >= _minDegree)
             {
                 MoveKeyFromLeftSibling(node, positionInNodeKeys, subTree, subTreePosition);
+
+                return subTree;
             }
             // case 3a. Right sibling has enough keys
-            else if (subTreePosition < node.N && node.Children[subTreePosition + 1]!.N >= _minDegree)
+            if (subTreePosition < node.N && node.Children[subTreePosition + 1]!.N >= _minDegree)
             {
                 MoveKeyFromRightSibling(node, positionInNodeKeys, subTree, subTreePosition);
+
+                return subTree;
             }
+
             // case 3b. Left sibling has just t -1 keys. Merge with subTree
             // this operation could leave the root node empty
-            else if (subTreePosition > 0 && node.Children[subTreePosition - 1]!.N == _minDegree - 1)
+            if (subTreePosition > 0 && node.Children[subTreePosition - 1]!.N == _minDegree - 1)
             {
-                MergeWithLeftSibling(node, positionInNodeKeys, subTree, subTreePosition);
+                var mergedSubtree = MergeWithLeftSibling(node, positionInNodeKeys, subTree, subTreePosition);
                 CheckAndFixEmptyRoot();
+
+                return mergedSubtree;
             }
+
             // case 3b. Right sibling has just t -1 keys. Merge with subTree
             // this operation could leave the root node empty
-            else if (subTreePosition < node.N && node.Children[subTreePosition + 1]!.N == _minDegree - 1)
-            {
-                MergeWithRightSibling(node, positionInNodeKeys, subTree, subTreePosition);
-                CheckAndFixEmptyRoot();
-            }
+            MergeWithRightSibling(node, positionInNodeKeys, subTree, subTreePosition);
+            CheckAndFixEmptyRoot();
+
+            return subTree;
         }
 
         /// <summary>
@@ -381,19 +387,23 @@ namespace FHS.CT.AlgoDat.DataStructures
         }
 
         /// <summary>
-        /// Merging <c>subTree</c> with its left sibling by appending it to sibling
+        /// Merging <c>subTree</c> with its left sibling by appending it to sibling.
+        /// This means that all elements from <c>subTree</c> will go into <c>leftSibling</c>
         /// </summary>
         /// <param name="node">Parent node which children get merged</param>
         /// <param name="positionInNodeKeys">Position in <c>node</c> keys where operations happen</param>
         /// <param name="subTree">Subtree which gets merged</param>
         /// <param name="subTreePosition">Position of subtree in <c>node</c> children list</param>
-        private static void MergeWithLeftSibling(Node node, int positionInNodeKeys, Node subTree, int subTreePosition)
+        /// <returns>Reference to new subTree</returns>
+        private static Node MergeWithLeftSibling(Node node, int positionInNodeKeys, Node subTree, int subTreePosition)
         {
             var leftSibling = node.Children[subTreePosition - 1]!;
             Merge(leftSibling, node.Keys[positionInNodeKeys]!, subTree);
             // shift all everything in node by one position
             // if subTree is the right child of node, we need to keep Children[positionInNodeKeys] child pointer
-            MoveToLeftAndShrink(node, positionInNodeKeys, positionInNodeKeys == subTreePosition);
+            MoveToLeftAndShrink(node, positionInNodeKeys, positionInNodeKeys != subTreePosition);
+
+            return leftSibling; // everything was merged in leftSibling. This one needs to be processed further
         }
 
         /// <summary>

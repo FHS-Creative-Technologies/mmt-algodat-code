@@ -87,7 +87,7 @@ public class BTreeTests
         KeysEqual(btree.Root.Children[0]!.Children[1]!, new [] { 'D', 'E', 'J', 'K' });
         KeysEqual(btree.Root.Children[0]!.Children[2]!, new [] { 'N', 'O' });
 
-        // should trigger case 3b. It should end up at having an empty root during the operation
+        // should trigger case 3b. With right sibling merge. It should end up at having an empty root during the operation
         btree.Delete('D');
 
         KeysEqual(btree.Root, new [] { 'C', 'L', 'P', 'T', 'X' });
@@ -107,6 +107,34 @@ public class BTreeTests
         KeysEqual(btree.Root.Children[3]!, new [] { 'Q', 'R', 'S' });
         KeysEqual(btree.Root.Children[4]!, new [] { 'U', 'V' });
         KeysEqual(btree.Root.Children[5]!, new [] { 'Y', 'Z' });
+
+        // should trigger case 3a with left sibling
+        btree.Delete('U');
+        KeysEqual(btree.Root, new [] { 'E', 'L', 'P', 'S', 'X' });
+        KeysEqual(btree.Root.Children[0]!, new [] { 'A', 'C' });
+        KeysEqual(btree.Root.Children[1]!, new [] { 'J', 'K' });
+        KeysEqual(btree.Root.Children[2]!, new [] { 'N', 'O' });
+        KeysEqual(btree.Root.Children[3]!, new [] { 'Q', 'R' });
+        KeysEqual(btree.Root.Children[4]!, new [] { 'T', 'V' });
+        KeysEqual(btree.Root.Children[5]!, new [] { 'Y', 'Z' });
+
+        // should trigger case 3b with left sibling merge
+        btree.Delete('J');
+        KeysEqual(btree.Root, new [] { 'L', 'P', 'S', 'X' });
+        KeysEqual(btree.Root.Children[0]!, new [] { 'A', 'C', 'E', 'K' });
+        KeysEqual(btree.Root.Children[1]!, new [] { 'N', 'O' });
+        KeysEqual(btree.Root.Children[2]!, new [] { 'Q', 'R' });
+        KeysEqual(btree.Root.Children[3]!, new [] { 'T', 'V' });
+        KeysEqual(btree.Root.Children[4]!, new [] { 'Y', 'Z' });
+
+        var secondBtree = CreateSimpleTree();
+        // should trigger 2b
+        secondBtree.Delete('U');
+        KeysEqual(secondBtree.Root, new [] { 'P', 'S', 'X' });
+        KeysEqual(secondBtree.Root.Children[0]!, new [] { 'N', 'O' });
+        KeysEqual(secondBtree.Root.Children[1]!, new [] { 'Q', 'R' });
+        KeysEqual(secondBtree.Root.Children[2]!, new [] { 'T', 'V' });
+        KeysEqual(secondBtree.Root.Children[3]!, new [] { 'Y', 'Z' });
     }
 
     // construct example from Cormen, Introduction to Algorithms, 4th Edition, Page 514
@@ -182,6 +210,42 @@ public class BTreeTests
         thirdChildFromSecondChild.Keys[0] = 'Y';
         thirdChildFromSecondChild.Keys[1] = 'Z';
         btree.Root.Children[1]!.Children[2] = thirdChildFromSecondChild;
+
+        return btree;
+    }
+
+    private static BTree<char> CreateSimpleTree()
+    {
+        var btree = new BTree<char>(3);
+        btree.Insert('P');
+        btree.Insert('S');
+        btree.Insert('U');
+        btree.Root.Leaf = false;
+
+        BTree<char>.Node firstChild = new(3);
+        firstChild.Keys[0] = 'N';
+        firstChild.Keys[1] = 'O';
+        firstChild.N = 2;
+        btree.Root.Children[0] = firstChild;
+
+        BTree<char>.Node secondChild = new(3);
+        secondChild.Keys[0] = 'Q';
+        secondChild.Keys[1] = 'R';
+        secondChild.N = 2;
+        btree.Root.Children[1] = secondChild;
+
+        BTree<char>.Node thirdChild = new(3);
+        thirdChild.Keys[0] = 'T';
+        thirdChild.Keys[1] = 'V';
+        thirdChild.N = 2;
+        btree.Root.Children[2] = thirdChild;
+
+        BTree<char>.Node fourthChild = new(3);
+        fourthChild.Keys[0] = 'X';
+        fourthChild.Keys[1] = 'Y';
+        fourthChild.Keys[2] = 'Z';
+        fourthChild.N = 3;
+        btree.Root.Children[3] = fourthChild;
 
         return btree;
     }
