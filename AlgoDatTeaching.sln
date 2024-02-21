@@ -61,6 +61,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "btree", "doc\examples\datas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BTree", "tests\FHS\CT\AlgoDat\DataStructures\BTree\BTree.csproj", "{FCBA803B-A474-48BA-BD05-0E0964E63EB8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "tests\FHS\CT\AlgoDat\Algorithms\Sorting\Sorting.csproj", "{A97728B3-DB93-411D-BEEF-71F696D0DA92}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -170,6 +172,10 @@ Global
 		{FCBA803B-A474-48BA-BD05-0E0964E63EB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCBA803B-A474-48BA-BD05-0E0964E63EB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCBA803B-A474-48BA-BD05-0E0964E63EB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A97728B3-DB93-411D-BEEF-71F696D0DA92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A97728B3-DB93-411D-BEEF-71F696D0DA92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A97728B3-DB93-411D-BEEF-71F696D0DA92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A97728B3-DB93-411D-BEEF-71F696D0DA92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{36B84064-F0E4-4C72-96CF-BCC9346CB860} = {7E35D32E-95A7-43C0-8753-59E5BD4618E8}
