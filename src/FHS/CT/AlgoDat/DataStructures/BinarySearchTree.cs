@@ -18,13 +18,13 @@ namespace FHS.CT.AlgoDat.DataStructures
 {
     public class BinarySearchTree<T> where T : IComparable<T>
     {
-        public class Node<U>
+        public class Node
         {
             public T Key { get; }
 
-            public Node<U>? Left { get; set; }
-            public Node<U>? Right { get; set; }
-            public Node<U>? Parent { get; set; }
+            public Node? Left { get; set; }
+            public Node? Right { get; set; }
+            public Node? Parent { get; set; }
 
             public Node(T key)
             {
@@ -32,14 +32,14 @@ namespace FHS.CT.AlgoDat.DataStructures
             }
         }
 
-        public Node<T>? Root { get; set; }
+        public Node? Root { get; set; }
 
-        public Node<T>? Search(T searchKey)
+        public Node? Search(T searchKey)
         {
             return Search(searchKey, Root);
         }
 
-        private Node<T>? Search(T searchKey, Node<T>? currentNode)
+        private Node? Search(T searchKey, Node? currentNode)
         {
             while (currentNode != null && searchKey.CompareTo(currentNode.Key) != 0)
             {
@@ -56,10 +56,10 @@ namespace FHS.CT.AlgoDat.DataStructures
             return currentNode;
         }
 
-        public Node<T> Insert(T key)
+        public Node Insert(T key)
         {
-            Node<T>? currentNode = Root;
-            Node<T>? lastParent = null;
+            var currentNode = Root;
+            Node? lastParent = null;
 
             while (currentNode != null)
             {
@@ -74,7 +74,7 @@ namespace FHS.CT.AlgoDat.DataStructures
                 }
             }
 
-            Node<T> newNode = new(key);
+            Node newNode = new(key);
             newNode.Parent = lastParent;
             if (lastParent == null)
             {
@@ -92,7 +92,7 @@ namespace FHS.CT.AlgoDat.DataStructures
             return newNode;
         }
 
-        private Node<T> Minimum(Node<T> n)
+        private Node Minimum(Node n)
         {
             while (n.Left != null)
             {
@@ -102,14 +102,14 @@ namespace FHS.CT.AlgoDat.DataStructures
             return n;
         }
 
-        private Node<T>? Successor(Node<T> n)
+        private Node? Successor(Node n)
         {
             if (n.Right != null)
             {
                 return Minimum(n.Right);
             }
 
-            Node<T>? parent = n.Parent;
+            var parent = n.Parent;
             while (parent != null && n == parent.Right)
             {
                 n = parent;
@@ -119,7 +119,7 @@ namespace FHS.CT.AlgoDat.DataStructures
             return parent;
         }
 
-        private void Transplant(Node<T>? u, Node<T>? v)
+        private void Transplant(Node? u, Node? v)
         {
             if (u is null)
             {
@@ -145,7 +145,7 @@ namespace FHS.CT.AlgoDat.DataStructures
             }
         }
 
-        public void Delete(Node<T> d)
+        public void Delete(Node d)
         {
             if (d.Left == null)
             {
@@ -157,7 +157,7 @@ namespace FHS.CT.AlgoDat.DataStructures
             }
             else
             {
-                Node<T>? min = Successor(d);
+                var min = Successor(d);
                 if (min is not null)
                 {
                     if (min.Parent != d)
