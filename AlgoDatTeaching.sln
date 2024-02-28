@@ -65,6 +65,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "tests\FHS\CT\Alg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HashTable", "tests\FHS\CT\AlgoDat\DataStructures\HashTable\HashTable.csproj", "{F875C2EF-F8B6-4481-980E-EF49C6E3609D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinarySearchTree", "tests\FHS\CT\AlgoDat\DataStructures\BinarySearchTree\BinarySearchTree.csproj", "{AD0F5B28-9174-4232-80CF-C613CCE773B4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -182,6 +184,10 @@ Global
 		{F875C2EF-F8B6-4481-980E-EF49C6E3609D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F875C2EF-F8B6-4481-980E-EF49C6E3609D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F875C2EF-F8B6-4481-980E-EF49C6E3609D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD0F5B28-9174-4232-80CF-C613CCE773B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD0F5B28-9174-4232-80CF-C613CCE773B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD0F5B28-9174-4232-80CF-C613CCE773B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD0F5B28-9174-4232-80CF-C613CCE773B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{36B84064-F0E4-4C72-96CF-BCC9346CB860} = {7E35D32E-95A7-43C0-8753-59E5BD4618E8}
