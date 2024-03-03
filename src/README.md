@@ -12,7 +12,7 @@ Most of the ideas are from Introduction to Algorithms, Third Edition, September 
 
 - Graphs (Breadth First Search / Depth First Search / Dijkstra)
 - Minimal Spanning Trees (Prim / Kruskal)
-- Sorting (Insertion Sort / Merge Sort / Quick Sort)
+- Sorting (Insertion Sort / Selection Sort / Merge Sort / Quick Sort)
 - String Similarity (Jaro Winkler)
 
 ## Implemented Data Structures
