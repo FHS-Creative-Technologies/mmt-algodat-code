@@ -37,6 +37,17 @@ public class SortingTests
         TestSorted(copyOfRandomNumbers, randomNumbers);
     }
 
+    [Fact]
+    public void TestSelectionSort()
+    {
+        var randomNumbers = GenerateArray(1000);
+        var copyOfRandomNumbers = new int[randomNumbers.Length];
+        Array.Copy(randomNumbers, copyOfRandomNumbers, randomNumbers.Length);
+        SelectionSort<int>.Sort(randomNumbers);
+
+        TestSorted(copyOfRandomNumbers, randomNumbers);
+    }
+
     private static void TestSorted(int[] original, int[] sorted)
     {
         Array.Sort(original);
