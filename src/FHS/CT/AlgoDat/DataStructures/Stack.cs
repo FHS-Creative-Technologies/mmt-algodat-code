@@ -40,11 +40,11 @@ namespace FHS.CT.AlgoDat.DataStructures
 
         public T? Pop()
         {
-            DoubleLinkedList<T>.Node<T>? elem = _list.Tail;
+            var elem = _list.Tail;
 
-            if(elem is null)
+            if(elem == null)
             {
-                return default(T);
+                return default;
             }
 
             _list.Delete(elem);
