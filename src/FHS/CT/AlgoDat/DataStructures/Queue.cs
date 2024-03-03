@@ -40,11 +40,11 @@ namespace FHS.CT.AlgoDat.DataStructures
 
         public T? Dequeue()
         {
-            DoubleLinkedList<T>.Node<T>? elem = _list.Head;
+            var elem = _list.Head;
 
-            if(elem is null)
+            if(elem == null)
             {
-                return default(T);
+                return default;
             }
 
             _list.Delete(elem);

@@ -71,6 +71,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AVLTree", "tests\FHS\CT\Alg
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoubleLinkedList", "tests\FHS\CT\AlgoDat\DataStructures\DoubleLinkedList\DoubleLinkedList.csproj", "{E2FE4D26-403B-4159-B06A-29FD3776DF28}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue", "tests\FHS\CT\AlgoDat\DataStructures\Queue\Queue.csproj", "{C076F0F6-DA1C-4722-B094-6C205703D830}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
