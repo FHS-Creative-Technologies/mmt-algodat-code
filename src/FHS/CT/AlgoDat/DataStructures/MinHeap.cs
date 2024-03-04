@@ -20,6 +20,14 @@ namespace FHS.CT.AlgoDat.DataStructures
     {
         private List<T> _heap;
 
+        public int Count
+        {
+            get
+            {
+                return _heap.Count;
+            }
+        }
+
         public MinHeap()
         {
             _heap = new();
