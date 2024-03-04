@@ -122,9 +122,9 @@ namespace FHS.CT.AlgoDat.DataStructures
 
             public int Count { get; private set; }
 
-            public Set(T initalNodeData)
+            public Set(T initialNodeData)
             {
-                Node ambassadorNode = new(initalNodeData, this);
+                Node ambassadorNode = new(initialNodeData, this);
 
                 Head = ambassadorNode;
                 Tail = ambassadorNode;
@@ -161,12 +161,12 @@ namespace FHS.CT.AlgoDat.DataStructures
 
             public int CompareTo(Set? other)
             {
-                if (other is null || Ambassador is null)
+                if (other == null)
                 { 
                     return int.MaxValue; 
                 }
-                else
-                    return Ambassador.CompareTo(other.Ambassador);
+
+                return Ambassador.CompareTo(other.Ambassador);
             }
         }
 
@@ -185,14 +185,14 @@ namespace FHS.CT.AlgoDat.DataStructures
             _elementToNode.Add(element, elementSet.Head);
         }
 
-        public T? Find(T element)
+        public T Find(T element)
         {
             if (!_elementToNode.Contains(element))
             {
                 throw new UnionFindException($"{element} does not belong to any set");
             }
 
-            return _elementToNode.Get(element).Parent.Ambassador;
+            return _elementToNode.Get(element)!.Parent.Ambassador; // element is in list. Was checked a few lines before
         }
 
         /// <summary>Join two disjoint sets.</summary>
@@ -205,8 +205,8 @@ namespace FHS.CT.AlgoDat.DataStructures
                 throw new UnionFindException($"{element1} or {element2} does not belong to any set");
             }
 
-            var set1 = _elementToNode.Get(element1).Parent;
-            var set2 = _elementToNode.Get(element2).Parent;
+            var set1 = _elementToNode.Get(element1)!.Parent; // both elements are in list
+            var set2 = _elementToNode.Get(element2)!.Parent;
 
             if (set1.Equals(set2))
             {
