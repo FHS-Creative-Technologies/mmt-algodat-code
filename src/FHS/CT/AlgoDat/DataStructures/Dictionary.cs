@@ -103,13 +103,13 @@ namespace FHS.CT.AlgoDat.DataStructures
             }
         }
 
-        public TValue Get(TKey key)
+        public TValue? Get(TKey key)
         {
             var result = _hashTable.Search(new KeyValuePair(key));
 
             if (result == null)
             {
-                return default(TValue)!;
+                return default;
             }
 
             return result.Value!;
