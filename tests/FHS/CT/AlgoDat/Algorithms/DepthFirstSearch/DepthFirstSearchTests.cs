@@ -36,4 +36,36 @@ public class DepthFirstSearchTests
 
         Assert.Equal(expectedNodes, visitedNodes);
     }
+
+    [Fact]
+    public void TestDepthFirstSearchIterative()
+    {
+        var graph = new Graph<char>();
+        graph.AddEdge('a', 'b');
+        graph.AddEdge('a', 'c');
+        graph.AddEdge('b', 'd');
+        graph.AddEdge('b', 'f');
+        graph.AddEdge('c', 'b');
+        graph.AddEdge('d', 'c');
+        graph.AddEdge('e', 'c');
+        graph.AddEdge('e', 'd');
+        graph.AddEdge('f', 'd');
+
+        var visitedNodes = new List<char>();
+        DepthFirstSearch<char>.TraversIterative(graph, 'a', delegate(char node)
+        {
+            visitedNodes.Add(node);
+        });
+
+        var expectedNodes = new List<char>()
+        {
+            'a',
+            'c',
+            'b',
+            'f',
+            'd'
+        };
+
+        Assert.Equal(expectedNodes, visitedNodes);
+    }
 }

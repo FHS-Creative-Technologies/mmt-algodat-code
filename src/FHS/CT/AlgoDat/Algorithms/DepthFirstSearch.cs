@@ -31,19 +31,15 @@ namespace FHS.CT.AlgoDat.Algorithms
             nextNodes.Push(startNode);
             while (nextNodes.Count > 0)
             {
-                var currentNode = nextNodes.Pop();
+                var currentNode = nextNodes.Pop()!;
 
-                if (currentNode is not null)
+                nodeFunction(currentNode);
+                foreach (var neighbour in graph.GetEdges(currentNode)!)
                 {
-                    nodeFunction(currentNode);
-
-                    foreach (var neighbour in graph.GetEdges(currentNode))
+                    if (!visitedNodes.Contains(neighbour))
                     {
-                        if (!visitedNodes.Contains(neighbour))
-                        {
-                            visitedNodes.Add(neighbour);
-                            nextNodes.Push(neighbour);
-                        }
+                        visitedNodes.Add(neighbour);
+                        nextNodes.Push(neighbour);
                     }
                 }
             }
