@@ -52,11 +52,6 @@ namespace FHS.CT.AlgoDat.DataStructures
 
             public bool MoveNext()
             {
-                if (_enumerator is null)
-                { 
-                    return false; 
-                }
-
                 return _enumerator.MoveNext();
             }
 
@@ -121,7 +116,7 @@ namespace FHS.CT.AlgoDat.DataStructures
             }
 
             Edge newEdge = new Edge(from, to, weight);
-            var edges = _nodes.Get(from);
+            var edges = _nodes.Get(from)!; // not null since we know that from is in our graph
             if (edges.Search(newEdge) == null)
             {
                 edges.Append(newEdge);
@@ -134,7 +129,7 @@ namespace FHS.CT.AlgoDat.DataStructures
             AddEdge(n2, n1, weight);
         }
 
-        public DoubleLinkedList<Edge> GetEdges(TNode node)
+        public DoubleLinkedList<Edge>? GetEdges(TNode node)
         {
             return _nodes.Get(node);
         }

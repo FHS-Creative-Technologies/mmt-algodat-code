@@ -88,7 +88,7 @@ namespace FHS.CT.AlgoDat.DataStructures
                 AddNode(to);
             }
 
-            var edges = _nodes.Get(from);
+            var edges = _nodes.Get(from)!; // cannot be null since we checked it before
             if (edges.Search(to) == null)
             {
                 edges.Append(to);
@@ -96,7 +96,7 @@ namespace FHS.CT.AlgoDat.DataStructures
             
         }
 
-        public DoubleLinkedList<TNode> GetEdges(TNode node)
+        public DoubleLinkedList<TNode>? GetEdges(TNode node)
         {
             return _nodes.Get(node);
         }
