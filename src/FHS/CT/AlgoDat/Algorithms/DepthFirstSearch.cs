@@ -62,7 +62,7 @@ namespace FHS.CT.AlgoDat.Algorithms
             nodeColors.Set(currentNode, Color.GRAY);
             nodeFunction(currentNode);
 
-            foreach (var neighbour in graph.GetEdges(currentNode))
+            foreach (var neighbour in graph.GetEdges(currentNode)!) // currentNode is in graph
             {
                 if (nodeColors.Get(neighbour).Equals(Color.WHITE))
                 {

@@ -39,7 +39,7 @@ namespace FHS.CT.AlgoDat.Algorithms
             List<WeightedGraph<T>.Edge> edges = new();
             foreach (var node in graph)
             {
-                foreach (var edge in graph.GetEdges(node))
+                foreach (var edge in graph.GetEdges(node)!) // node is in graph
                 {
                     edges.Add(edge);
                 }

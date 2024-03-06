@@ -47,7 +47,7 @@ namespace FHS.CT.AlgoDat.Algorithms
                     break;
                 }
 
-                foreach (var edge in graph.GetEdges(minNode))
+                foreach (var edge in graph.GetEdges(minNode)!) // node is in graph
                 {
                     if (queue.Contains(edge.To) && edge.Weight.CompareTo(weights.Get(edge.To)) < 0)
                     {

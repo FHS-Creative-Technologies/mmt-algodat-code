@@ -36,7 +36,7 @@ namespace FHS.CT.AlgoDat.Algorithms
             {
                 var nextNode = queue.Dequeue();
 
-                if (nextNode is null)
+                if (nextNode == null)
                 { 
                     break; 
                 }
@@ -46,7 +46,7 @@ namespace FHS.CT.AlgoDat.Algorithms
                     break;
                 }
 
-                foreach (var edge in graph.GetEdges(nextNode))
+                foreach (var edge in graph.GetEdges(nextNode)!) // nextShould is in graph
                 {
                     bool newPath = Relax(edge.From, edge.To, edge.Weight, distance, predecessors);
                     if (newPath)
@@ -67,7 +67,7 @@ namespace FHS.CT.AlgoDat.Algorithms
             path.Add(currentNode);
             while (!currentNode.Equals(from))
             {
-                currentNode = predecessors.Get(currentNode);
+                currentNode = predecessors.Get(currentNode)!; // currentNode is in dict
                 path.Add(currentNode);
             }
 

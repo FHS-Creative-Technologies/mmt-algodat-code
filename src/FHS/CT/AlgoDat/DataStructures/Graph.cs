@@ -111,9 +111,4 @@ namespace FHS.CT.AlgoDat.DataStructures
             return GetEnumerator();
         }
     }
-
-    public class GraphException : Exception
-    {
-        public GraphException(string message) : base(message) {}
-    }
 }

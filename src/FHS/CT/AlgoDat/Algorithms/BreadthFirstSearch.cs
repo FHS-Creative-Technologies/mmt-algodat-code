@@ -31,19 +31,16 @@ namespace FHS.CT.AlgoDat.Algorithms
             nextNodes.Enqueue(startNode);
             while (nextNodes.Count > 0)
             {
-                TNode? currentNode = nextNodes.Dequeue();
+                TNode currentNode = nextNodes.Dequeue()!; // queue is not empty
 
-                if (currentNode is not null)
+                nodeFunction(currentNode);
+
+                foreach (var neighbour in graph.GetEdges(currentNode)!) // currentNode is in graph
                 {
-                    nodeFunction(currentNode);
-
-                    foreach (var neighbour in graph.GetEdges(currentNode))
+                    if (!visitedNodes.Contains(neighbour))
                     {
-                        if (!visitedNodes.Contains(neighbour))
-                        {
-                            visitedNodes.Add(neighbour);
-                            nextNodes.Enqueue(neighbour);
-                        }
+                        visitedNodes.Add(neighbour);
+                        nextNodes.Enqueue(neighbour);
                     }
                 }
             }
