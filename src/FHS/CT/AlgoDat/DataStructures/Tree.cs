@@ -18,12 +18,12 @@ namespace FHS.CT.AlgoDat.DataStructures
 {
     public class Tree<T>
     {
-        public class Node<U>
+        public class Node
         {
             public T Key { get; }
 
-            public Node<U>? Left { get; set; }
-            public Node<U>? Right { get; set; }
+            public Node? Left { get; set; }
+            public Node? Right { get; set; }
 
             public Node(T key)
             {
@@ -31,9 +31,9 @@ namespace FHS.CT.AlgoDat.DataStructures
             }
         }
 
-        public Node<T>? Root { get; set; }
+        public Node? Root { get; set; }
 
-        public void InorderTreeWalk(Node<T>? node)
+        public void InorderTreeWalk(Node? node)
         {
             if (node == null)
             {
