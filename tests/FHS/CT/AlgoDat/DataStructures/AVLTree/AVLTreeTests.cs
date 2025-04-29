@@ -52,6 +52,19 @@ public class AVLTreeTests
 
         AvlTreeChecker<int>.Check(tree);
     }
+
+    [Fact]
+    public void TestInsertSorted()
+    {
+        AvlTree<int> tree = new();
+
+        for (var number = 0; number < 200000; number++)
+        {
+            tree.Insert(number);
+        }
+
+        AvlTreeChecker<int>.Check(tree);
+    }
 }
 
 public static class AvlTreeChecker<T> where T : IComparable<T>
@@ -78,6 +91,7 @@ public static class AvlTreeChecker<T> where T : IComparable<T>
             storedLeftHeight = node.Left.Height;
             computedLeftHeight = CheckWalk(tree, node.Left);
         }
+        Assert.Equal(computedLeftHeight, storedLeftHeight);
 
         var storedRightHeight = 0;
         var computedRightHeight = 0;
@@ -89,6 +103,7 @@ public static class AvlTreeChecker<T> where T : IComparable<T>
             storedRightHeight = node.Right.Height;
             computedRightHeight = CheckWalk(tree, node.Right);
         }
+        Assert.Equal(computedRightHeight, storedRightHeight);
 
         Assert.Equal(Math.Max(storedRightHeight, storedLeftHeight) + 1, node.Height);
 
