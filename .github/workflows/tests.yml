@@ -3,6 +3,9 @@
 
 name: .NET
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [ "main" ]
@@ -11,7 +14,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
