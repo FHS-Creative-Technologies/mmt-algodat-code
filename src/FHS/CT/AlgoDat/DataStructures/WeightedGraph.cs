@@ -159,12 +159,12 @@ namespace FHS.CT.AlgoDat.DataStructures
                             // only print the "smaller" node connection
                             if (edge.From.CompareTo(edge.To) < 0)
                             {
-                                output += $"{edge.From} -- {edge.To} [label=\"{edge.Weight}\"];\n";
+                                output += $"\"{edge.From}\" -- \"{edge.To}\" [label=\"{edge.Weight}\"];\n";
                             }
                         }
                         else
                         {
-                            output += $"{edge.From} -> {edge.To} [label=\"{edge.Weight}\"];\n";
+                            output += $"\"{edge.From}\" -> \"{edge.To}\" [label=\"{edge.Weight}\"];\n";
                         }
 
                     }
