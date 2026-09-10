@@ -1,7 +1,7 @@
 # Introduction
 
 This NuGet package provides reference implementations for various algorithms and data structures taught
-at the [Salzburg University of Applied Sciences](https://www.fh-salzburg.ac.at) in the [MultiMediaTechnology degree program](https://www.fh-salzburg.ac.at/studium/ct/multimediatechnology-bachelor)
+at the [Salzburg University of Applied Sciences](https://www.fh-salzburg.ac.at) in the [Code and Interactive Systems (formerly MultiMediaTechnology) degree program](https://www.fh-salzburg.ac.at/studium/ct/code-and-interactive-systems-bachelor/curriculum)
 within the lecture Algorithms and Data Structures.
 
 All implementations are stacking on each other. That means if a complex data structure / algorithm uses other data structures they are provided as reference implementation as well.
