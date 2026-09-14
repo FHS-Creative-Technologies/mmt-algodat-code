@@ -79,4 +79,18 @@ public class HashTableTests
         actualItems.Sort();
         Assert.Equal(actualItems, items);
     }
+
+    [Fact]
+    public void TestDetect0()
+    {
+        var ht = new HashTable<int>();
+
+        ht.Add(0);
+        ht.Add(2);
+        ht.Add(-200);
+
+        Assert.True(ht.Contains(0), "0 should return true to be in hash table");
+        Assert.True(ht.Contains(2), "2 should return true to be in hash table");
+        Assert.True(ht.Contains(-200), "-200 should return true to be in hash table");
+    }
 }
