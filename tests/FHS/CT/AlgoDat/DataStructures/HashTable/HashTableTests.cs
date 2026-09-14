@@ -8,7 +8,7 @@ public class HashTableTests
     public void TestInsertInt()
     {
         var ht = new HashTable<int>();
-        for (var i = 1; i <= 20; i++)
+        for (var i = 0; i <= 20; i++)
         {
             ht.Add(i);
         }
